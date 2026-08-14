@@ -1,0 +1,427 @@
+/* Figma section #2065:6548 — 1920 × 612
+   Circle nudged slightly smaller than Figma 413.33 → 360
+   Midpoint kept at 1403.325 so the red curve still bisects it.
+*/
+.how-we-work {
+  position: relative;
+  width: 100%;
+  height: 612px;
+  overflow: visible;
+  background: #ffffff;
+}
+
+/*
+  Red bg: full-bleed from left, right edge at circle midpoint
+*/
+.how-we-work__bg {
+  position: absolute;
+  left: 0;
+  top: 0;
+  z-index: 1;
+  height: 100%;
+  width: calc(50% - 960px + 1403.325px);
+  max-width: none;
+  object-fit: fill;
+  object-position: left center;
+  pointer-events: none;
+  display: block;
+}
+
+.how-we-work__video-layer {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  pointer-events: none;
+}
+
+/* 360px circle, centered on Figma midpoint 1403.325 / y 333.495 */
+.how-we-work__video-wrap {
+  position: absolute;
+  top: 153.5px;
+  left: calc(50% - 960px + 1223.325px);
+  width: 360px;
+  height: 360px;
+}
+
+.how-we-work__video-thumb {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 50%;
+  display: block;
+}
+
+/* Solid white mark — always centered on the circular photo */
+.how-we-work__circle {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  z-index: 3;
+  width: 68px;
+  height: 68px;
+  margin: 0;
+  transform: translate(-50%, -50%);
+  background-color: #ffffff;
+  border-radius: 50%;
+  border: 0 !important;
+  outline: 0 !important;
+  box-shadow: none !important;
+  filter: none;
+  color: transparent;
+  pointer-events: none;
+}
+
+/* Label and arrow live inside the circle's box, so their offsets are a share of
+   the circle size and they follow it at every width (Figma: label 1125/100,
+   arrow 1118/132 against a 360px circle at 1223.325/153.5). */
+.how-we-work__watch-label {
+  position: absolute;
+  top: -14.861%;
+  left: -27.3125%;
+  z-index: 4;
+  margin: 0;
+  font-family: 'Fredoka One', cursive;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 26.67px;
+  color: #ffffff;
+  white-space: nowrap;
+}
+
+.how-we-work__watch-img {
+  position: absolute;
+  top: -5.972%;
+  left: -29.257%;
+  z-index: 4;
+  width: 35.556%;
+  height: auto;
+  aspect-ratio: 157 / 120;
+  max-width: none;
+  object-fit: contain;
+  object-position: right top;
+  display: block;
+  pointer-events: none;
+}
+
+/*
+  Top-weighted layout: more space above the content than below
+  (not vertically centered in the red band)
+*/
+.how-we-work__inner {
+  position: relative;
+  z-index: 4;
+  max-width: 1330px;
+  height: auto;
+  margin: 0 auto;
+  padding: 130px 15px 28px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+}
+
+.how-we-work__main {
+  max-width: 870px;
+  margin-top: 0;
+  padding-top: 0;
+}
+
+.how-we-work__label {
+  font-family: 'Fredoka One', cursive;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 26.67px;
+  letter-spacing: 0.125em;
+  text-transform: uppercase;
+  color: #ffffff;
+  margin: 0 0 4px;
+}
+
+.how-we-work__title {
+  font-family: 'Fredoka One', cursive;
+  font-weight: 400;
+  font-size: 60px;
+  line-height: 72px;
+  color: #ffffff;
+  margin: 0 0 24px;
+}
+
+.how-we-work__steps {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 265px));
+  gap: 30px;
+}
+
+.how-we-work__icon-wrap {
+  position: relative;
+  width: 152px;
+  height: 152px;
+  margin-bottom: 30px;
+}
+
+.how-we-work__icon-outer {
+  box-sizing: border-box;
+  width: 152px;
+  height: 152px;
+  border: 5px solid #ffd40d;
+  border-radius: 76px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.how-we-work__icon-inner {
+  box-sizing: border-box;
+  width: 143px;
+  height: 143px;
+  background: #ffd40d;
+  border: 3px solid #000000;
+  border-radius: 71.5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.how-we-work__icon-inner img {
+  width: 95px;
+  height: auto;
+  max-height: 95px;
+  object-fit: contain;
+}
+
+.how-we-work__number {
+  position: absolute;
+  top: 5px;
+  left: 5px;
+  width: 40px;
+  height: 40px;
+  background: #000000;
+  border-radius: 20px;
+  font-family: 'Fredoka One', cursive;
+  font-size: 16px;
+  line-height: 26.67px;
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.how-we-work__step-title {
+  font-family: 'Fredoka One', cursive;
+  font-weight: 400;
+  font-size: 26px;
+  line-height: 31.2px;
+  color: #ffffff;
+  margin: 0 0 14px;
+}
+
+.how-we-work__step-desc {
+  font-family: 'Epilogue', sans-serif;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 26.67px;
+  color: #ffffff;
+  margin: 0;
+}
+
+/* ——— Tablet ——— */
+@media (max-width: 1200px) {
+  .how-we-work {
+    height: 560px;
+  }
+
+  /* End the curve on the circle's centre (circle: right 4%, width 300) so it
+     bisects the photo and the label keeps a red backdrop, as on desktop. */
+  .how-we-work__bg {
+    width: calc(96% - 150px);
+  }
+
+  .how-we-work__video-wrap {
+    top: 50%;
+    left: auto;
+    right: 4%;
+    width: 300px;
+    height: 300px;
+    transform: translateY(-50%);
+  }
+
+  .how-we-work__circle {
+    width: 60px;
+    height: 60px;
+  }
+
+  .how-we-work__watch-label {
+    font-size: 14px;
+    line-height: 22px;
+  }
+
+  .how-we-work__inner {
+    height: auto;
+    padding: 100px 24px 28px;
+    justify-content: flex-start;
+  }
+
+  .how-we-work__main {
+    max-width: 58%;
+  }
+
+  .how-we-work__title {
+    font-size: 44px;
+    line-height: 52px;
+  }
+
+  .how-we-work__steps {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 16px;
+  }
+
+  .how-we-work__icon-wrap,
+  .how-we-work__icon-outer {
+    width: 120px;
+    height: 120px;
+  }
+
+  .how-we-work__icon-inner {
+    width: 112px;
+    height: 112px;
+  }
+
+  .how-we-work__icon-inner img {
+    width: 72px;
+    max-height: 72px;
+  }
+
+  .how-we-work__step-title {
+    font-size: 22px;
+    line-height: 28px;
+  }
+
+  .how-we-work__step-desc {
+    font-size: 14px;
+    line-height: 22px;
+  }
+}
+
+/* ——— Compact tablet / large phone ——— */
+@media (max-width: 900px) {
+  .how-we-work {
+    display: flex;
+    flex-direction: column;
+    height: auto;
+    padding: 0;
+    overflow: hidden;
+  }
+
+  .how-we-work__bg {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: left center;
+  }
+
+  .how-we-work__inner {
+    order: 1;
+    height: auto;
+    padding: 56px 24px 36px;
+  }
+
+  .how-we-work__main {
+    max-width: 100%;
+  }
+
+  .how-we-work__title {
+    font-size: 40px;
+    line-height: 48px;
+    margin-bottom: 28px;
+  }
+
+  .how-we-work__steps {
+    grid-template-columns: 1fr;
+    gap: 28px;
+    max-width: 420px;
+  }
+
+  .how-we-work__watch-label,
+  .how-we-work__watch-img {
+    display: none;
+  }
+
+  .how-we-work__video-layer {
+    order: 2;
+    position: relative;
+    inset: auto;
+    z-index: 3;
+    display: flex;
+    justify-content: center;
+    padding: 8px 24px 56px;
+  }
+
+  .how-we-work__video-wrap {
+    position: relative;
+    top: auto;
+    left: auto;
+    right: auto;
+    width: min(260px, 68vw);
+    height: auto;
+    aspect-ratio: 1;
+    transform: none;
+  }
+
+  .how-we-work__circle {
+    width: 56px;
+    height: 56px;
+  }
+}
+
+/* ——— Phone ——— */
+@media (max-width: 600px) {
+  .how-we-work__inner {
+    padding: 48px 20px 28px;
+  }
+
+  .how-we-work__label {
+    font-size: 14px;
+    letter-spacing: 0.1em;
+  }
+
+  .how-we-work__title {
+    font-size: 34px;
+    line-height: 42px;
+  }
+
+  .how-we-work__icon-wrap,
+  .how-we-work__icon-outer {
+    width: 112px;
+    height: 112px;
+  }
+
+  .how-we-work__icon-inner {
+    width: 104px;
+    height: 104px;
+  }
+
+  .how-we-work__number {
+    width: 34px;
+    height: 34px;
+    font-size: 14px;
+  }
+
+  .how-we-work__step-title {
+    font-size: 22px;
+  }
+
+  .how-we-work__video-layer {
+    padding-bottom: 48px;
+  }
+
+  .how-we-work__video-wrap {
+    width: min(220px, 62vw);
+  }
+
+  .how-we-work__circle {
+    width: 48px;
+    height: 48px;
+  }
+}

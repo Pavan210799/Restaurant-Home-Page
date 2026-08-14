@@ -1,0 +1,65 @@
+/* Shared page gutter — Figma's 355px canvas margin, collapsing with the
+   viewport. The header logo, hero copy and slider arrows all read this, so they
+   line up at every width. Viewport-based math (not %) keeps it identical for
+   padding and absolute offsets alike. */
+:root {
+  --page-gutter: max(40px, calc((min(100vw, 1920px) - 1920px) / 2 + 355px));
+}
+
+@media (max-width: 1440px) {
+  :root {
+    --page-gutter: clamp(48px, 7vw, 96px);
+  }
+}
+
+@media (max-width: 1024px) {
+  :root {
+    --page-gutter: 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  :root {
+    --page-gutter: 16px;
+  }
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  margin: 0;
+  font-family: 'Epilogue', sans-serif;
+  color: #555555;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#root {
+  width: 100%;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+button {
+  border: none;
+  cursor: pointer;
+  font-family: inherit;
+}
+
+ul {
+  list-style: none;
+}

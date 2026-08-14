@@ -1,0 +1,251 @@
+/* Figma #2065:6514 — heading at y:15, rule at y:102.19, cards at y:168.17,
+   dots at y:465.41, frame ends 25.98 later, then 95 to How We Work */
+.categories {
+  padding: 15px 0 128px;
+  background: #ffffff;
+}
+
+.categories__container {
+  max-width: 1920px;
+  margin: 0 auto;
+  padding: 0 clamp(24px, 16.15vw, 310px);
+}
+
+.categories__header {
+  text-align: center;
+  margin-bottom: 56px;
+}
+
+.categories__title {
+  font-family: 'Fredoka One', cursive;
+  font-weight: 400;
+  font-size: 60px;
+  line-height: 72px;
+  color: #000000;
+  margin: 0 0 9px;
+}
+
+.categories__underline {
+  width: 270px;
+  height: 10px;
+  background: #ffd40d;
+  margin: 0 auto;
+  border-radius: 30px;
+}
+
+.categories__grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 30px;
+  margin: 0 auto 50px;
+}
+
+.categories__card {
+  text-align: center;
+  width: 100%;
+  max-width: 302.5px;
+  margin: 0 auto;
+  transition: transform 0.3s ease;
+}
+
+.categories__card:hover {
+  transform: translateY(-6px);
+}
+
+.categories__card-image-wrap {
+  position: relative;
+  width: 100%;
+  max-width: 302.5px;
+  aspect-ratio: 302.5 / 176.45;
+  height: auto;
+  margin: 0 auto 15px;
+  border-radius: 100px;
+  overflow: hidden;
+}
+
+.categories__card-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  border-radius: 100px;
+  transition: transform 0.45s ease;
+}
+
+.categories__card:hover .categories__card-image {
+  transform: scale(1.06);
+}
+
+.categories__card-overlay {
+  position: absolute;
+  left: 7.56px;
+  top: 4.41px;
+  right: 7.56px;
+  bottom: 4.41px;
+  border: 3px solid #ffffff;
+  border-radius: 100px;
+  pointer-events: none;
+  box-sizing: border-box;
+}
+
+.categories__card-title {
+  font-family: 'Fredoka One', cursive;
+  font-weight: 400;
+  font-size: 24px;
+  line-height: 28.8px;
+  color: #000000;
+  margin: 0 0 1px;
+}
+
+.categories__card-count {
+  font-family: 'Fredoka One', cursive;
+  font-weight: 400;
+  font-size: 15px;
+  line-height: 25px;
+  color: #f3274c;
+  margin: 0;
+}
+
+.categories__dots {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+}
+
+.categories__dot {
+  box-sizing: border-box;
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  background: #b5b5b5;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  transition: transform 0.2s ease, border-color 0.2s ease;
+}
+
+.categories__dot:hover {
+  transform: scale(1.15);
+}
+
+.categories__dot--active {
+  background: #ffffff;
+  border: 5px solid #f3274c;
+}
+
+/* ——— Tablet ——— */
+@media (max-width: 1100px) {
+  .categories {
+    padding: 72px 0 56px;
+  }
+
+  .categories__container {
+    padding: 0 clamp(20px, 5vw, 40px);
+  }
+
+  .categories__title {
+    font-size: 48px;
+    line-height: 58px;
+  }
+
+  .categories__underline {
+    width: 200px;
+    height: 8px;
+  }
+
+  .categories__grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 36px 24px;
+  }
+
+  .categories__card {
+    max-width: 100%;
+  }
+
+  .categories__card-image-wrap {
+    max-width: 100%;
+    height: auto;
+    aspect-ratio: 302.5 / 176.45;
+  }
+}
+
+/* ——— Phone ——— */
+@media (max-width: 700px) {
+  .categories {
+    padding: 56px 0 48px;
+  }
+
+  .categories__container {
+    padding: 0 16px;
+  }
+
+  .categories__header {
+    margin-bottom: 32px;
+  }
+
+  .categories__title {
+    font-size: 34px;
+    line-height: 42px;
+    margin-bottom: 12px;
+  }
+
+  .categories__underline {
+    width: 140px;
+    height: 7px;
+  }
+
+  .categories__grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 24px 14px;
+    margin-bottom: 32px;
+  }
+
+  .categories__card:hover {
+    transform: none;
+  }
+
+  .categories__card-title {
+    font-size: 16px;
+    line-height: 22px;
+  }
+
+  .categories__card-count {
+    font-size: 12px;
+    line-height: 18px;
+  }
+
+  .categories__card-overlay {
+    left: 5px;
+    top: 3px;
+    right: 5px;
+    bottom: 3px;
+    border-width: 2px;
+  }
+
+  .categories__dots {
+    gap: 14px;
+  }
+}
+
+@media (max-width: 420px) {
+  .categories__grid {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 28px;
+  }
+
+  .categories__card,
+  .categories__card-image-wrap {
+    max-width: none;
+  }
+
+  .categories__card-title {
+    font-size: 20px;
+    line-height: 26px;
+  }
+
+  .categories__card-count {
+    font-size: 14px;
+    line-height: 22px;
+  }
+}

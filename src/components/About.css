@@ -1,0 +1,219 @@
+/* Figma #2065:6466 — frame at y:1000 (100 below the hero), label at y:14,
+   body section at y:177.81, frame ends 15 below the content, then 58 to Categories */
+.about {
+  padding: 114px 0 130px;
+  background: #ffffff;
+}
+
+/* Shared page gutter: 310px at 1920 (Figma 295 frame inset + 15 content inset),
+   scaling with the viewport so every section keeps the same margins. */
+.about__container {
+  max-width: 1920px;
+  margin: 0 auto;
+  padding: 0 clamp(24px, 16.15vw, 310px);
+}
+
+.about__header {
+  text-align: center;
+  margin-bottom: 19px;
+}
+
+.about__label {
+  font-family: 'Fredoka One', cursive;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 30px;
+  letter-spacing: 0.1111em;
+  text-transform: uppercase;
+  color: #f3274c;
+  margin: 0 0 4px;
+}
+
+.about__title {
+  font-family: 'Fredoka One', cursive;
+  font-weight: 400;
+  font-size: 50px;
+  line-height: 60px;
+  color: #000000;
+  text-align: center;
+  margin: 0;
+}
+
+.about__body {
+  display: grid;
+  grid-template-columns: minmax(0, 740fr) minmax(0, 480fr);
+  column-gap: clamp(32px, 6.1538%, 80px);
+  align-items: start;
+}
+
+.about__image-wrap {
+  width: 100%;
+  overflow: hidden;
+  border-radius: 4px;
+}
+
+.about__image {
+  width: 100%;
+  max-width: 740px;
+  height: auto;
+  object-fit: cover;
+  display: block;
+}
+
+.about__content {
+  padding-top: 59px;
+}
+
+.about__text {
+  font-family: 'Epilogue', sans-serif;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 26.67px;
+  color: #555555;
+  margin: 0 0 34px;
+}
+
+.about__features {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+.about__feature {
+  display: flex;
+  align-items: flex-start;
+  gap: 15px;
+}
+
+.about__feature-icon {
+  flex-shrink: 0;
+  width: 110px;
+  height: 110px;
+  display: block;
+}
+
+.about__feature-title {
+  font-family: 'Fredoka One', cursive;
+  font-weight: 400;
+  font-size: 22px;
+  line-height: 36.67px;
+  color: #000000;
+  margin: 0 0 4px;
+}
+
+.about__feature-desc {
+  font-family: 'Epilogue', sans-serif;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 26.67px;
+  color: #555555;
+  margin: 0;
+}
+
+/* ——— Tablet ——— */
+@media (max-width: 1100px) {
+  .about {
+    padding: 80px 0 64px;
+  }
+
+  .about__container {
+    padding: 0 clamp(20px, 5vw, 40px);
+  }
+
+  .about__title {
+    font-size: 42px;
+    line-height: 52px;
+  }
+
+  .about__title br {
+    display: none;
+  }
+
+  .about__body {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 36px;
+  }
+
+  .about__image-wrap {
+    border-radius: 12px;
+  }
+
+  .about__image {
+    max-width: 100%;
+  }
+
+  .about__content {
+    padding-top: 0;
+  }
+}
+
+/* ——— Phone ——— */
+@media (max-width: 700px) {
+  .about {
+    padding: 64px 0 48px;
+  }
+
+  .about__container {
+    padding: 0 16px;
+  }
+
+  .about__header {
+    margin-bottom: 28px;
+  }
+
+  .about__label {
+    font-size: 14px;
+    line-height: 24px;
+    letter-spacing: 0.08em;
+  }
+
+  .about__title {
+    font-size: 30px;
+    line-height: 38px;
+  }
+
+  .about__text {
+    font-size: 15px;
+    line-height: 25px;
+    margin-bottom: 28px;
+  }
+
+  .about__features {
+    gap: 22px;
+  }
+
+  .about__feature {
+    gap: 14px;
+  }
+
+  .about__feature-icon {
+    width: 84px;
+    height: 84px;
+  }
+
+  .about__feature-title {
+    font-size: 18px;
+    line-height: 28px;
+  }
+
+  .about__feature-desc {
+    font-size: 14px;
+    line-height: 22px;
+  }
+
+  .about__feature-desc br {
+    display: none;
+  }
+}
+
+@media (max-width: 420px) {
+  .about__feature {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .about__feature-icon {
+    width: 96px;
+    height: 96px;
+  }
+}

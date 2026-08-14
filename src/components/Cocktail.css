@@ -1,0 +1,303 @@
+/* Figma #2065:6812 — 1920 × 983.91, bg #F5F8FD
+   Card #2065:6825 — 302.5 × 452.55, 4 across a 1300 row with 30px gaps
+   Red pill EL-53e48732  — 282.5 × 126.49 at x:10 y:63.24  (half the image height)
+   Image   layout_5ae139f7 — 282.5 × 252.99 at x:10 y:0    (25% above / 25% below the pill)
+   White   EL-3b05a1b6   — 302.5 × 316.78 at y:135.77      (starts at the pill's midline)
+*/
+
+.cocktail {
+  background: #f5f8fd;
+  padding: 100px clamp(24px, 16.15vw, 310px) 151px;
+}
+
+.cocktail__container {
+  width: 100%;
+  max-width: 1300px;
+  margin: 0 auto;
+}
+
+.cocktail__title {
+  font-family: 'Fredoka One', cursive;
+  font-weight: 400;
+  font-size: 60px;
+  line-height: 72px;
+  color: #000000;
+  text-align: center;
+  margin: 0 0 15px;
+}
+
+.cocktail__subtitle {
+  font-family: 'Epilogue', sans-serif;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 26.67px;
+  color: #555555;
+  text-align: center;
+  margin: 0 0 15px;
+}
+
+.cocktail__grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 30px;
+  margin-bottom: 45px;
+  justify-items: center;
+}
+
+.cocktail__card {
+  position: relative;
+  width: 100%;
+  max-width: 302.5px;
+  aspect-ratio: 302.5 / 452.55;
+  height: auto;
+  overflow: visible;
+  container-type: inline-size;
+  container-name: cocktail-card;
+  transition: transform 0.3s ease;
+}
+
+.cocktail__card:hover {
+  transform: translateY(-8px);
+}
+
+.cocktail__card:hover .cocktail__card-white {
+  box-shadow: 0 18px 40px rgba(2, 21, 78, 0.18);
+}
+
+.cocktail__card:hover .cocktail__card-image {
+  transform: scale(1.05);
+}
+
+/* White panel begins at the red pill's midline */
+.cocktail__card-white {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 29.9989%;
+  height: 70.0011%;
+  background: #ffffff;
+  border-radius: 30px;
+  border-radius: 9.9174cqw;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+  z-index: 0;
+  transition: box-shadow 0.3s ease;
+}
+
+.cocktail__card-accent {
+  position: absolute;
+  left: 3.3058%;
+  top: 13.9741%;
+  width: 93.3884%;
+  height: 27.9504%;
+  background: #f3274c;
+  border-radius: 100px;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.cocktail__card-image {
+  position: absolute;
+  left: 3.3058%;
+  top: 0;
+  width: 93.3884%;
+  height: 55.9032%;
+  object-fit: contain;
+  object-position: center;
+  z-index: 2;
+  pointer-events: none;
+  transition: transform 0.4s ease;
+}
+
+.cocktail__card-body {
+  position: absolute;
+  left: 11.5702%;
+  right: 11.5702%;
+  top: 55.8302%;
+  z-index: 3;
+}
+
+.cocktail__weight {
+  font-family: 'Fredoka One', cursive;
+  font-weight: 400;
+  font-size: 16px;
+  font-size: 5.2893cqw;
+  line-height: 26.67px;
+  line-height: 8.8165cqw;
+  color: #555555;
+  margin: 0 0 2.64px;
+  margin-bottom: 0.8727cqw;
+}
+
+.cocktail__card-title {
+  font-family: 'Fredoka One', cursive;
+  font-weight: 400;
+  font-size: 24px;
+  font-size: 7.9339cqw;
+  line-height: 28.8px;
+  line-height: 9.5207cqw;
+  color: #000000;
+  margin: 0 0 15px;
+  margin-bottom: 4.9587cqw;
+}
+
+.cocktail__prices {
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+  gap: 3.9669cqw;
+}
+
+.cocktail__old-price {
+  font-family: 'Fredoka One', cursive;
+  font-weight: 400;
+  font-size: 20px;
+  font-size: 6.6116cqw;
+  line-height: 33.33px;
+  line-height: 11.0182cqw;
+  color: #555555;
+  text-decoration: line-through;
+}
+
+.cocktail__price {
+  font-family: 'Fredoka One', cursive;
+  font-weight: 400;
+  font-size: 30px;
+  font-size: 9.9174cqw;
+  line-height: 50px;
+  line-height: 16.5289cqw;
+  color: #f3274c;
+}
+
+.cocktail__cart {
+  position: absolute;
+  left: 78.5124%;
+  top: 86.7418%;
+  width: 16.5289%;
+  height: 11.0485%;
+  background: #ffd40d;
+  border: none;
+  border-radius: 7px;
+  border-radius: 2.314cqw;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #000000;
+  font-size: 18px;
+  font-size: 5.9504cqw;
+  line-height: 1;
+  z-index: 3;
+  cursor: pointer;
+  transition: transform 0.15s ease, background-color 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.cocktail__cart:hover {
+  background: #f3274c;
+  color: #ffffff;
+  box-shadow: 0 8px 18px rgba(243, 39, 76, 0.35);
+}
+
+.cocktail__cart:active {
+  transform: scale(0.88);
+  box-shadow: none;
+}
+
+.cocktail__booking {
+  text-align: center;
+  font-family: 'Fredoka One', cursive;
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 33.33px;
+  color: #000000;
+  margin: 0;
+}
+
+.cocktail__booking-phone {
+  color: #f3274c;
+  text-decoration: underline;
+}
+
+@media (max-width: 1100px) {
+  .cocktail {
+    padding: 72px clamp(20px, 5vw, 40px) 80px;
+  }
+}
+
+@media (max-width: 1200px) {
+  .cocktail__grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 30px;
+  }
+
+  .cocktail__title {
+    font-size: 42px;
+    line-height: 52px;
+  }
+}
+
+@media (max-width: 700px) {
+  .cocktail {
+    padding: 56px 16px 64px;
+  }
+
+  .cocktail__grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 16px;
+  }
+
+  .cocktail__title {
+    font-size: 30px;
+    line-height: 40px;
+  }
+
+  .cocktail__subtitle {
+    font-size: 15px;
+  }
+
+  .cocktail__booking {
+    font-size: 18px;
+  }
+}
+
+/* Two per row down to the smallest phones — keep the card readable
+   once the container-relative type gets small. */
+@media (max-width: 460px) {
+  .cocktail {
+    padding: 48px 16px 56px;
+  }
+
+  .cocktail__container {
+    padding: 0;
+  }
+
+  .cocktail__grid {
+    gap: 12px;
+  }
+
+  .cocktail__card-white {
+    border-radius: 16px;
+  }
+
+  .cocktail__weight {
+    font-size: max(11px, 5.2893cqw);
+    line-height: max(16px, 8.8165cqw);
+  }
+
+  .cocktail__card-title {
+    font-size: max(15px, 7.9339cqw);
+    line-height: max(19px, 9.5207cqw);
+  }
+
+  .cocktail__old-price {
+    font-size: max(12px, 6.6116cqw);
+  }
+
+  .cocktail__price {
+    font-size: max(18px, 9.9174cqw);
+    line-height: max(26px, 16.5289cqw);
+  }
+
+  .cocktail__cart {
+    font-size: max(11px, 5.9504cqw);
+  }
+}

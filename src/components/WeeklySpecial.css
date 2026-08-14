@@ -1,0 +1,523 @@
+/* Figma #2065:6895 — 1330 × 618.09 at x:310
+   Label  #2065:6896  x:15  y:14      Fredoka 18/30 uppercase, red
+   Head   #2065:6897  x:15  y:48.98   Fredoka 60/72, left aligned
+   Menu   #2065:6901  x:15  y:160.17  585 × 442.92 red, radius 30
+     rows           x:25  535 × 74.98, radius 35 (white / active yellow)
+   Panel  #2065:6917 x:638.52 y:161.62 673.17 × 440, 5px yellow border, radius 30
+   Image  #2065:6919 x:350 y:181.62   446.09 × 400 — straddles both panels
+*/
+
+.weekly-special {
+  background: #ffffff;
+  max-width: 1920px;
+  margin: 0 auto;
+  padding: 104px clamp(24px, 16.15vw, 310px) 70px;
+}
+
+.weekly-special__container {
+  width: 100%;
+  max-width: 1330px;
+  margin: 0 auto;
+}
+
+.weekly-special__label {
+  font-family: 'Fredoka One', cursive;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 30px;
+  letter-spacing: 0.1111em;
+  text-transform: uppercase;
+  color: #f3274c;
+  text-align: left;
+  margin: 0 0 5px;
+}
+
+.weekly-special__title {
+  font-family: 'Fredoka One', cursive;
+  font-weight: 400;
+  font-size: 60px;
+  line-height: 72px;
+  color: #000000;
+  text-align: left;
+  margin: 0;
+}
+
+/* Desktop stage keeps the exact Figma geometry; 1cqw = 13.3px at 1330 */
+.weekly-special__stage {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 1330 / 442.92;
+  margin-top: 39px;
+  container-type: inline-size;
+  container-name: deals;
+}
+
+/* Generates no box on desktop, so the menu and burger stay positioned
+   against the stage exactly as Figma places them. */
+.weekly-special__row {
+  display: contents;
+}
+
+/* Red menu panel */
+.weekly-special__menu {
+  position: absolute;
+  left: 1.1278%;
+  top: 0;
+  width: 43.985%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  background: #f3274c;
+  border-radius: 30px;
+  border-radius: 2.2556cqw;
+  z-index: 1;
+}
+
+.weekly-special__menu-item {
+  position: absolute;
+  left: 4.2735%;
+  width: 91.453%;
+  height: 16.9299%;
+}
+
+.weekly-special__menu-item:nth-child(1) { top: 6.7733%; }
+.weekly-special__menu-item:nth-child(2) { top: 24.1533%; }
+.weekly-special__menu-item:nth-child(3) { top: 41.5357%; }
+.weekly-special__menu-item:nth-child(4) { top: 58.9159%; }
+.weekly-special__menu-item:nth-child(5) { top: 76.2984%; }
+
+/* Rows: white pills with fully rounded left and right edges */
+.weekly-special__tab {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  gap: 0.7519cqw;
+  width: 100%;
+  height: 100%;
+  padding: 0 5.6075%;
+  background: #ffffff;
+  border: none;
+  border-radius: 35px;
+  border-radius: 2.6316cqw;
+  font-family: 'Fredoka One', cursive;
+  font-weight: 400;
+  font-size: 18px;
+  font-size: 1.3534cqw;
+  line-height: 30px;
+  line-height: 2.2556cqw;
+  color: #000000;
+  text-align: left;
+  cursor: pointer;
+  transition: background-color 0.25s ease;
+}
+
+.weekly-special__tab-bullet {
+  flex-shrink: 0;
+  box-sizing: border-box;
+  width: 15px;
+  width: 1.1278cqw;
+  height: 15px;
+  height: 1.1278cqw;
+  border-radius: 50%;
+  background: #ffffff;
+  border: 4px solid #c2c2c2;
+  border-width: 0.3008cqw;
+  transition: border-color 0.25s ease;
+}
+
+.weekly-special__tab:hover {
+  background: #fff6cf;
+}
+
+.weekly-special__tab--active {
+  background: #ffd40d;
+}
+
+.weekly-special__tab--active .weekly-special__tab-bullet {
+  border-color: #f3274c;
+}
+
+/* White card with the yellow outline */
+.weekly-special__panel {
+  position: absolute;
+  left: 48.009%;
+  top: 0.3274%;
+  width: 50.6143%;
+  height: 99.3407%;
+  background: #ffffff;
+  border: 5px solid #ffd40d;
+  border-width: 0.3759cqw;
+  border-radius: 30px;
+  border-radius: 2.2556cqw;
+  box-sizing: border-box;
+  z-index: 1;
+}
+
+/* Burger straddles both panels: ~56% over the red card, ~35% over the white one */
+.weekly-special__image {
+  position: absolute;
+  left: 26.3158%;
+  top: 4.8429%;
+  width: 33.5406%;
+  height: 90.3097%;
+  object-fit: contain;
+  object-position: center;
+  z-index: 3;
+  pointer-events: none;
+}
+
+.weekly-special__content {
+  position: absolute;
+  left: 23.4076%;
+  top: 17.1659%;
+  width: 66.1938%;
+  z-index: 2;
+}
+
+.weekly-special__dish-title {
+  font-family: 'Fredoka One', cursive;
+  font-weight: 400;
+  font-size: 30px;
+  font-size: 2.2556cqw;
+  line-height: 50px;
+  line-height: 3.7594cqw;
+  color: #000000;
+  margin: 0 0 11px;
+  margin-bottom: 0.8271cqw;
+}
+
+/* Two list items per row, as in Figma */
+.weekly-special__features {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  column-gap: 60px;
+  column-gap: 4.5113cqw;
+  row-gap: 15px;
+  row-gap: 1.1278cqw;
+  margin: 0 0 25px;
+  margin-bottom: 1.8797cqw;
+  padding: 0;
+  list-style: none;
+}
+
+.weekly-special__feature {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  gap: 0.5263cqw;
+  font-family: 'Fredoka One', cursive;
+  font-weight: 400;
+  font-size: 16px;
+  font-size: 1.203cqw;
+  line-height: 26.67px;
+  line-height: 2.005cqw;
+  color: #555555;
+}
+
+.weekly-special__check {
+  flex-shrink: 0;
+  font-size: 16px;
+  font-size: 1.203cqw;
+  color: #2fb457;
+}
+
+.weekly-special__pricing {
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+  gap: 0.9023cqw;
+  margin: 0 0 18px;
+  margin-bottom: 1.3534cqw;
+}
+
+.weekly-special__price {
+  font-family: 'Fredoka One', cursive;
+  font-weight: 400;
+  font-size: 40px;
+  font-size: 3.0075cqw;
+  line-height: 66.66px;
+  line-height: 5.012cqw;
+  color: #f3274c;
+}
+
+.weekly-special__old-price {
+  font-family: 'Fredoka One', cursive;
+  font-weight: 400;
+  font-size: 26px;
+  font-size: 1.9549cqw;
+  line-height: 43.33px;
+  line-height: 3.2579cqw;
+  color: #555555;
+  text-decoration: line-through;
+}
+
+/* Same offset-outline treatment as the hero button */
+.weekly-special__btn {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 210px;
+  width: 15.7895cqw;
+  height: 54px;
+  height: 4.0602cqw;
+  background: #f3274c;
+  border: none;
+  border-radius: 12px;
+  font-family: 'Fredoka One', cursive;
+  font-weight: 400;
+  font-size: 18px;
+  font-size: 1.3534cqw;
+  line-height: 30px;
+  color: #ffffff;
+  cursor: pointer;
+  transition: transform 0.25s ease, background-color 0.25s ease;
+}
+
+.weekly-special__btn:hover {
+  transform: translateY(-2px);
+  background: #e01f42;
+}
+
+.weekly-special__btn-border {
+  position: absolute;
+  top: -6px;
+  left: 16px;
+  width: calc(100% - 10px);
+  height: calc(100% + 12px);
+  border: 3px solid #f3274c;
+  border-radius: 12px;
+  pointer-events: none;
+  z-index: -1;
+}
+
+/* ---------- Tablet ---------- */
+@media (max-width: 1100px) {
+  .weekly-special {
+    padding: 64px clamp(20px, 5vw, 40px) 40px;
+  }
+
+  .weekly-special__label,
+  .weekly-special__title {
+    padding-left: 0;
+  }
+
+  .weekly-special__title {
+    font-size: 42px;
+    line-height: 52px;
+  }
+
+  .weekly-special__stage {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    aspect-ratio: auto;
+    margin-top: 28px;
+    container-type: normal;
+  }
+
+  /* Menu and burger share one row: 75% of the burger sits on the card and
+     the pair fills the row, so it stays centred. Both cards share a height. */
+  .weekly-special__row {
+    display: block;
+    position: relative;
+    order: 1;
+  }
+
+  .weekly-special__menu {
+    position: static;
+    width: 85%;
+    height: auto;
+    padding: 18px;
+    border-radius: 30px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .weekly-special__menu-item {
+    position: static;
+    width: 100%;
+    height: 54px;
+    flex: 0 0 auto;
+  }
+
+  .weekly-special__tab {
+    padding: 0 26px;
+    gap: 12px;
+    font-size: 17px;
+    line-height: 26px;
+    border-radius: 999px;
+  }
+
+  .weekly-special__tab-icon {
+    font-size: 17px;
+  }
+
+  .weekly-special__image {
+    position: absolute;
+    left: 44%;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 60%;
+    height: auto;
+    aspect-ratio: 446.09 / 400;
+    margin: 0;
+    z-index: 3;
+  }
+
+  .weekly-special__panel {
+    position: static;
+    order: 2;
+    width: 100%;
+    height: auto;
+    margin-top: 24px;
+    border-width: 5px;
+    border-radius: 30px;
+    padding: 22px 24px;
+    display: flex;
+  }
+
+  .weekly-special__content {
+    position: static;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .weekly-special__btn {
+    align-self: flex-end;
+  }
+
+  .weekly-special__dish-title {
+    font-size: 26px;
+    line-height: 34px;
+    margin-bottom: 10px;
+  }
+
+  .weekly-special__features {
+    column-gap: 24px;
+    row-gap: 8px;
+    margin-bottom: 12px;
+  }
+
+  .weekly-special__feature {
+    font-size: 15px;
+    line-height: 22px;
+    gap: 8px;
+  }
+
+  .weekly-special__check {
+    font-size: 15px;
+  }
+
+  .weekly-special__pricing {
+    margin-bottom: 12px;
+  }
+
+  .weekly-special__price {
+    font-size: 32px;
+    line-height: 40px;
+  }
+
+  .weekly-special__old-price {
+    font-size: 21px;
+    line-height: 30px;
+  }
+
+  .weekly-special__btn {
+    width: 190px;
+    height: 48px;
+    font-size: 17px;
+  }
+}
+
+/* ---------- Mobile ---------- */
+@media (max-width: 700px) {
+  .weekly-special {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+}
+
+@media (max-width: 600px) {
+  .weekly-special {
+    padding: 48px 16px 32px;
+  }
+
+  .weekly-special__title {
+    font-size: 32px;
+    line-height: 40px;
+  }
+
+  .weekly-special__menu {
+    width: 84.5%;
+    padding: 14px;
+    gap: 7px;
+  }
+
+  .weekly-special__menu-item {
+    height: 46px;
+  }
+
+  .weekly-special__tab {
+    padding: 0 18px;
+    font-size: 15px;
+    gap: 10px;
+  }
+
+  .weekly-special__image {
+    width: 62%;
+    left: 42%;
+  }
+
+  .weekly-special__panel {
+    margin-top: 20px;
+    padding: 18px 16px;
+    border-width: 4px;
+  }
+
+  .weekly-special__dish-title {
+    font-size: 22px;
+    line-height: 30px;
+    margin-bottom: 8px;
+  }
+
+  .weekly-special__features {
+    column-gap: 14px;
+    row-gap: 6px;
+    margin-bottom: 10px;
+  }
+
+  .weekly-special__feature {
+    font-size: 13px;
+    line-height: 20px;
+    gap: 6px;
+  }
+
+  .weekly-special__check {
+    font-size: 14px;
+  }
+
+  .weekly-special__pricing {
+    margin-bottom: 10px;
+  }
+
+  .weekly-special__price {
+    font-size: 26px;
+    line-height: 34px;
+  }
+
+  .weekly-special__old-price {
+    font-size: 17px;
+    line-height: 26px;
+  }
+
+  .weekly-special__btn {
+    width: 176px;
+    height: 46px;
+    font-size: 15px;
+  }
+}

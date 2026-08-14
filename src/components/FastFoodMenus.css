@@ -1,0 +1,394 @@
+/* Figma section #2065:6589 — cards 413.33 × 247.34 */
+.fast-food {
+  background: #f5f8fd;
+  padding: 106px 0 150px;
+  overflow: visible;
+}
+
+.fast-food__container {
+  max-width: 1920px;
+  margin: 0 auto;
+  padding: 0 clamp(24px, 16.15vw, 310px);
+}
+
+.fast-food__header {
+  text-align: center;
+  margin-bottom: 24px;
+}
+
+.fast-food__title {
+  font-family: 'Fredoka One', cursive;
+  font-weight: 400;
+  font-size: 60px;
+  line-height: 72px;
+  color: #000000;
+  margin: 0;
+}
+
+.fast-food__underline {
+  width: 270px;
+  height: 10px;
+  background: #ffd40d;
+  border-radius: 30px;
+  margin: 9px auto 0;
+}
+
+.fast-food__grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: clamp(16px, 1.56vw, 30px);
+  overflow: visible;
+}
+
+/* Outer frame matches Figma container so the red pill can sit 50/50 */
+.menu-card {
+  position: relative;
+  width: 100%;
+  max-width: none;
+  height: auto;
+  aspect-ratio: 413.33 / 247.34;
+  overflow: visible;
+  transition: transform 0.3s ease;
+}
+
+.menu-card:hover {
+  transform: translateY(-6px) scale(1.02);
+}
+
+.menu-card:hover .menu-card__white {
+  box-shadow: 0 18px 40px rgba(2, 21, 78, 0.18);
+}
+
+/* White panel starts at the red pill’s horizontal center (Figma x: 82.67) */
+.menu-card__white {
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 20%;
+  height: 100%;
+  background: #ffffff;
+  border-radius: 20px;
+  box-shadow: 0 3px 18px rgba(2, 21, 78, 0.05);
+  z-index: 0;
+  transition: box-shadow 0.3s ease;
+}
+
+/* Red pill: 105 × 223 at x:31 y:12 — half outside the white card */
+.menu-card__accent {
+  position: absolute;
+  left: 7.5%;
+  top: 5%;
+  width: 25.4%;
+  height: 90%;
+  background: #f3274c;
+  border-radius: 100px;
+  z-index: 1;
+  pointer-events: none;
+}
+
+/* Product 202×181 centered on the pill (Figma x:-18 y:33) */
+.menu-card__image {
+  position: absolute;
+  left: -4.35%;
+  top: 13.4%;
+  width: 48.87%;
+  height: 73.18%;
+  object-fit: contain;
+  z-index: 2;
+  pointer-events: none;
+}
+
+.menu-card__content {
+  position: absolute;
+  left: 24.9%;
+  top: 21%;
+  z-index: 2;
+}
+
+.menu-card__title {
+  font-family: 'Fredoka One', cursive;
+  font-weight: 400;
+  font-size: clamp(18px, 1.35vw, 26px);
+  line-height: 1.2;
+  color: #000000;
+  margin: 0 0 0.5em;
+}
+
+.menu-card__price {
+  font-family: 'Fredoka One', cursive;
+  font-weight: 400;
+  font-size: clamp(20px, 1.56vw, 30px);
+  line-height: 1.4;
+  color: #f3274c;
+}
+
+.menu-card__cart {
+  position: absolute;
+  right: 3%;
+  bottom: 4%;
+  width: clamp(36px, 2.6vw, 50px);
+  height: clamp(36px, 2.6vw, 50px);
+  background: #ffd40d;
+  border: none;
+  border-radius: 7px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #000000;
+  font-size: clamp(14px, 0.94vw, 18px);
+  line-height: 1;
+  z-index: 3;
+  cursor: pointer;
+  transition: transform 0.15s ease, background-color 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.menu-card__cart:hover {
+  background: #f3274c;
+  color: #ffffff;
+  box-shadow: 0 8px 18px rgba(243, 39, 76, 0.35);
+}
+
+.menu-card__cart:active {
+  transform: scale(0.88);
+  box-shadow: none;
+}
+
+.menu-card__cart i {
+  font-size: 18px;
+}
+
+/* Opening Times — Figma 413.33 × 230.05, red bar hangs below */
+.fast-food__opening {
+  position: relative;
+  width: 100%;
+  max-width: none;
+  height: auto;
+  aspect-ratio: 413.33 / 230.05;
+  background: #fed30d;
+  border-radius: 20px;
+  overflow: visible;
+  padding: 8.7% 0 0;
+  box-sizing: border-box;
+}
+
+.fast-food__opening-title {
+  font-family: 'Fredoka One', cursive;
+  font-weight: 400;
+  font-size: 28px;
+  line-height: 46.66px;
+  color: #000000;
+  text-align: center;
+  margin: 0;
+}
+
+.fast-food__opening-bar {
+  width: 100px;
+  height: 5px;
+  background: #000000;
+  border-radius: 20px;
+  margin: 0 auto 18px;
+}
+
+.fast-food__hours {
+  display: flex;
+  justify-content: space-between;
+  width: 61%;
+  margin: 0 auto 4%;
+  font-family: 'Fredoka One', cursive;
+  font-size: clamp(13px, 0.83vw, 16px);
+  line-height: 1.25;
+  color: #000000;
+}
+
+.fast-food__phone-box {
+  position: absolute;
+  left: 2.5%;
+  right: 2.5%;
+  top: 68.3%;
+  height: auto;
+  min-height: 40.5%;
+  background: #f3274c;
+  border-radius: 30px;
+  padding: 4% 4% 3%;
+  text-align: center;
+  box-sizing: border-box;
+}
+
+.fast-food__phone {
+  font-family: 'Fredoka One', cursive;
+  font-weight: 400;
+  font-size: 28px;
+  line-height: 1.25;
+  color: #ffffff;
+  position: relative;
+  display: inline-block;
+  margin: 0 0 6px;
+  padding-bottom: 8px;
+}
+
+/* Sits on the box edge below the text, so it never crosses the digits */
+.fast-food__phone::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 3px;
+  background: #ffd40d;
+  border-radius: 20px;
+}
+
+.fast-food__address {
+  font-family: 'Fredoka One', cursive;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 20px;
+  color: #ffffff;
+  margin: 0;
+  overflow-wrap: break-word;
+}
+
+@media (max-width: 1200px) {
+  .fast-food__grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+/* Same tablet gutter as every other section */
+@media (max-width: 1100px) {
+  .fast-food__container {
+    padding: 0 clamp(20px, 5vw, 40px);
+  }
+}
+
+@media (max-width: 900px) {
+  .fast-food {
+    padding: 72px 0 80px;
+  }
+
+  .fast-food__container {
+    padding: 0 clamp(20px, 5vw, 40px);
+  }
+
+  .fast-food__title {
+    font-size: 44px;
+    line-height: 54px;
+  }
+
+  .fast-food__underline {
+    width: 180px;
+    height: 8px;
+  }
+
+  .fast-food__grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 20px;
+  }
+
+  /* Opening Times flows instead of using the fixed Figma ratio, so the
+     red contact bar can't spill past the yellow card. */
+  .fast-food__opening {
+    grid-column: 1 / -1;
+    aspect-ratio: auto;
+    padding: 26px 0 0;
+  }
+
+  .fast-food__hours {
+    width: min(320px, 80%);
+    margin: 0 auto 10px;
+  }
+
+  .fast-food__phone-box {
+    position: static;
+    height: auto;
+    min-height: 0;
+    margin: 20px 2.5% 0;
+    padding: 18px 16px;
+  }
+
+  .fast-food__phone {
+    font-size: 24px;
+  }
+
+  .fast-food__address {
+    font-size: 14px;
+    line-height: 19px;
+  }
+}
+
+@media (max-width: 700px) {
+  .fast-food__container {
+    padding: 0 16px;
+  }
+
+  /* Narrow cards wrap the name onto three lines, so the card gets taller and
+     the copy is boxed between the pill and the bag button. */
+  .menu-card {
+    aspect-ratio: 413.33 / 300;
+  }
+
+  .menu-card__content {
+    top: 10%;
+    bottom: 10%;
+    right: 6%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  .menu-card__title {
+    margin: 0;
+  }
+}
+
+@media (max-width: 480px) {
+
+  .fast-food__grid {
+    gap: 14px;
+  }
+
+  .fast-food__title {
+    font-size: 34px;
+    line-height: 42px;
+  }
+
+  .menu-card__title {
+    font-size: 16px;
+    line-height: 20px;
+  }
+
+  .menu-card__price {
+    font-size: 20px;
+    line-height: 30px;
+  }
+
+  .menu-card__cart {
+    width: 36px;
+    height: 36px;
+    font-size: 14px;
+  }
+
+  .menu-card__cart i {
+    font-size: 14px;
+  }
+
+  .fast-food__opening-title {
+    font-size: 22px;
+    line-height: 32px;
+  }
+
+  .fast-food__phone {
+    font-size: 20px;
+    line-height: 1.25;
+  }
+
+  .fast-food__phone-box {
+    padding: 16px 12px;
+  }
+
+  .fast-food__address {
+    font-size: 13px;
+    line-height: 18px;
+  }
+}

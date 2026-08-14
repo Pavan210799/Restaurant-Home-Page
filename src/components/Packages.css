@@ -1,0 +1,283 @@
+/* Figma #2065:6772 — 1330 × 743.36 at x:310
+   Card #2065:6782 — 640 × 460
+   Circle EL-a0b5e58e — 395 × 395 at y:32.5, yellow ring EL-31c9f7a4 inset 10 / 3px
+   Image layout_223f3247 — 360 × 460 at x:280, z-index above the circle
+   Bullets EL-ec92804d — 15 × 15, 5px yellow stroke
+*/
+
+.packages {
+  background: #ffffff;
+  max-width: 1920px;
+  margin: 0 auto;
+  padding: 14px clamp(24px, 16.15vw, 310px) 90px;
+}
+
+.packages__container {
+  width: 100%;
+  max-width: 1330px;
+  margin: 0 auto;
+}
+
+.packages__header {
+  text-align: center;
+  max-width: 700px;
+  margin: 0 auto 45px;
+}
+
+.packages__label {
+  font-family: 'Fredoka One', cursive;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 30px;
+  letter-spacing: 0.1111em;
+  text-transform: uppercase;
+  color: #f3274c;
+  margin: 0 0 5px;
+}
+
+.packages__title {
+  font-family: 'Fredoka One', cursive;
+  font-weight: 400;
+  font-size: 60px;
+  line-height: 72px;
+  color: #000000;
+  margin: 0;
+}
+
+.packages__grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 20px;
+  max-width: 1300px;
+  margin: 0 auto;
+  padding: 15px 0;
+  align-items: start;
+}
+
+.packages__card {
+  position: relative;
+  width: 100%;
+  max-width: 640px;
+  aspect-ratio: 640 / 460;
+  height: auto;
+  justify-self: center;
+  overflow: visible;
+  container-type: inline-size;
+  container-name: pkg-card;
+}
+
+.packages__info {
+  position: absolute;
+  left: 0;
+  top: 7.0652%;
+  z-index: 1;
+  width: 61.71875%;
+  aspect-ratio: 1;
+  height: auto;
+}
+
+.packages__info-circle {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  background: #ffffff;
+  border-radius: 50%;
+}
+
+.packages__info-circle::after {
+  content: '';
+  position: absolute;
+  inset: 10px;
+  inset: 2.5316%;
+  border: 3px solid #ffd40d;
+  border-width: 0.46875cqw;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.packages__info-inner {
+  position: absolute;
+  left: 18.3544%;
+  top: 19.3747%;
+  width: 63.2911%;
+  z-index: 1;
+}
+
+.packages__card-title {
+  font-family: 'Fredoka One', cursive;
+  font-weight: 400;
+  font-size: 30px;
+  font-size: 4.6875cqw;
+  line-height: 36px;
+  line-height: 5.625cqw;
+  color: #000000;
+  margin: 0 0 19px;
+  margin-bottom: 2.96875cqw;
+}
+
+.packages__features {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  gap: 1.5625cqw;
+}
+
+.packages__feature {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  gap: 1.5625cqw;
+  font-family: 'Epilogue', sans-serif;
+  font-weight: 400;
+  font-size: 18px;
+  font-size: 2.8125cqw;
+  line-height: 30px;
+  line-height: 4.6875cqw;
+  color: #555555;
+  border: 0;
+  padding: 0;
+}
+
+.packages__bullet {
+  width: 15px;
+  height: 15px;
+  width: 2.34375cqw;
+  height: 2.34375cqw;
+  flex-shrink: 0;
+  box-sizing: border-box;
+  background: #ffffff;
+  border: 5px solid #ffd40d;
+  border-width: 0.78125cqw;
+  border-radius: 50%;
+}
+
+/* Figma puts the image at x:280, which crops the longest feature rows.
+   Starting at the card midpoint keeps the circle overlap without the clipping. */
+.packages__image {
+  position: absolute;
+  left: 50%;
+  top: 0;
+  z-index: 2;
+  width: 50%;
+  height: 100%;
+  max-width: none;
+  object-fit: cover;
+  border-radius: 30px;
+  border-radius: 4.6875cqw;
+  transition: transform 0.4s ease;
+}
+
+.packages__card:hover .packages__image {
+  transform: scale(1.04);
+}
+
+@media (max-width: 1100px) {
+  .packages {
+    padding-left: clamp(20px, 5vw, 40px);
+    padding-right: clamp(20px, 5vw, 40px);
+    padding-bottom: 64px;
+  }
+
+  .packages__grid {
+    grid-template-columns: 1fr;
+    justify-items: center;
+    gap: 36px;
+    padding: 8px 0 0;
+  }
+
+  .packages__card {
+    width: min(640px, 100%);
+  }
+
+  .packages__title {
+    font-size: 42px;
+    line-height: 52px;
+  }
+}
+
+/* Below this the circle is too small to hold the copy, so the card stacks:
+   image on top, text in a rounded panel with the same yellow outline. */
+@media (max-width: 700px) {
+  .packages {
+    padding: 24px 16px 56px;
+  }
+
+  .packages__header {
+    margin-bottom: 24px;
+  }
+
+  .packages__title {
+    font-size: 32px;
+    line-height: 40px;
+  }
+
+  .packages__label {
+    font-size: 16px;
+    line-height: 24px;
+  }
+
+  .packages__card {
+    display: flex;
+    flex-direction: column;
+    aspect-ratio: auto;
+    container-type: normal;
+  }
+
+  .packages__image {
+    position: static;
+    order: -1;
+    width: 100%;
+    height: 220px;
+    border-radius: 20px;
+    margin-bottom: 16px;
+  }
+
+  .packages__info {
+    position: static;
+    width: 100%;
+    aspect-ratio: auto;
+  }
+
+  .packages__info-circle {
+    height: auto;
+    border-radius: 24px;
+    padding: 22px 20px;
+  }
+
+  .packages__info-circle::after {
+    inset: 0;
+    border-width: 3px;
+    border-radius: 24px;
+  }
+
+  .packages__info-inner {
+    position: static;
+    width: 100%;
+  }
+
+  .packages__card-title {
+    font-size: 22px;
+    line-height: 28px;
+    margin-bottom: 14px;
+  }
+
+  .packages__features {
+    gap: 10px;
+  }
+
+  .packages__feature {
+    font-size: 15px;
+    line-height: 24px;
+    gap: 10px;
+  }
+
+  .packages__bullet {
+    width: 14px;
+    height: 14px;
+    border-width: 4px;
+  }
+}

@@ -1,0 +1,391 @@
+/* Figma footer #2065:6970 — 1920 × 672.61, bg #F5F8FD
+   Columns #2065:6971 at x:310 — 390 / 198 / 227 / 360 inside a 1300 row
+   Red card 390 × 364.95 radius 30 · titles Fredoka 26/43.33 with a 5px yellow rule
+   Links Epilogue 16/26.67 · input 360 × 63 · button 158.63 × 60 radius 12
+   Bottom bar #2065:7038 — 10px yellow top rule, Fredoka 16/26.67
+   Type scales with the row width so all four columns stay side by side.
+*/
+
+.footer {
+  position: relative;
+  background: #f5f8fd;
+  padding-top: 100px;
+  overflow: hidden;
+}
+
+/* Three columns in Figma proportions: 290 art · 1300 content · 274 art.
+   The art keeps its own size so its height is never squashed; the content
+   column absorbs the remaining width and sits between the two images. */
+.footer__layout {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  width: 100%;
+  gap: 0;
+}
+
+/* The art is stretched 15% taller than its natural ratio. It narrows with the
+   viewport instead of disappearing — the three columns can't overlap, so it
+   only ever takes width away from the content column. */
+.footer__decoration {
+  flex: 0 0 auto;
+  align-self: flex-end;
+  pointer-events: none;
+  height: auto;
+  object-fit: fill;
+}
+
+/* 75% of the Figma art widths (290 / 274), keeping the stretched ratios */
+.footer__decoration--left {
+  width: clamp(103px, 11.33vw, 217.5px);
+  aspect-ratio: 203 / 416;
+}
+
+.footer__decoration--right {
+  width: clamp(97px, 10.7vw, 205.5px);
+  aspect-ratio: 192 / 354;
+}
+
+.footer__inner {
+  position: relative;
+  z-index: 1;
+  flex: 1 1 1300px;
+  min-width: 0;
+  max-width: 1300px;
+  align-self: flex-start;
+  margin: 0 auto;
+  padding: 0 15px;
+  container-type: inline-size;
+  container-name: footer;
+}
+
+.footer__grid {
+  display: grid;
+  grid-template-columns: 390fr 198fr 227fr 360fr;
+  column-gap: 3.0769cqw;
+  row-gap: 40px;
+  padding-bottom: 80px;
+}
+
+.footer__info-card {
+  position: relative;
+  background: #f3274c;
+  border-radius: 30px;
+  border-radius: 2.3077cqw;
+  /* Figma insets: text starts at x:45 with only 15 to spare on the right,
+     which is what keeps the opening hours on a single line. */
+  padding: max(18px, 2.3077cqw) max(12px, 1.1538cqw) max(24px, 3.0769cqw)
+    max(20px, 3.4615cqw);
+  aspect-ratio: 390 / 364.95;
+  display: flex;
+  flex-direction: column;
+}
+
+.footer__logo {
+  width: max(110px, 13.3846cqw);
+  height: auto;
+  margin-bottom: max(14px, 2.3077cqw);
+  filter: brightness(0) invert(1);
+}
+
+.footer__hours {
+  font-family: 'Fredoka One', cursive;
+  font-weight: 400;
+  font-size: max(11px, 1.2308cqw);
+  line-height: max(18px, 2.0515cqw);
+  color: #ffffff;
+  margin: 0 0 max(8px, 1cqw);
+}
+
+.footer__closed {
+  text-decoration: underline;
+}
+
+.footer__rating {
+  margin: auto 0 0;
+  font-family: 'Fredoka One', cursive;
+  font-weight: 400;
+  font-size: max(11px, 1.2308cqw);
+  line-height: max(18px, 2.0515cqw);
+  color: #ffffff;
+}
+
+.footer__column-title {
+  font-family: 'Fredoka One', cursive;
+  font-weight: 400;
+  font-size: max(18px, 2cqw);
+  line-height: max(28px, 3.3331cqw);
+  color: #000000;
+  border-bottom: 5px solid #ffd40d;
+  border-bottom-width: max(3px, 0.3846cqw);
+  display: inline-block;
+  margin: 0 0 max(20px, 3.4615cqw);
+}
+
+.footer__link {
+  display: flex;
+  align-items: center;
+  gap: max(6px, 0.8cqw);
+  font-family: 'Epilogue', sans-serif;
+  font-weight: 400;
+  font-size: max(12px, 1.2308cqw);
+  line-height: max(20px, 2.0515cqw);
+  color: #000000;
+  margin-bottom: max(8px, 1cqw);
+  transition: color 0.2s ease;
+}
+
+.footer__link i {
+  font-size: max(9px, 1.0769cqw);
+  color: #616161;
+}
+
+.footer__link:hover {
+  color: #f3274c;
+}
+
+.footer__newsletter-text {
+  font-family: 'Epilogue', sans-serif;
+  font-weight: 400;
+  font-size: max(12px, 1.2308cqw);
+  line-height: max(20px, 2.0515cqw);
+  color: #000000;
+  margin: 0 0 max(10px, 1.2308cqw);
+}
+
+.footer__form {
+  display: flex;
+  flex-direction: column;
+  gap: max(14px, 2cqw);
+}
+
+.footer__input {
+  width: 100%;
+  height: max(46px, 4.8462cqw);
+  border: 1px solid #dedede;
+  border-radius: 10px;
+  padding: 0 max(16px, 2.7692cqw);
+  font-family: 'Epilogue', sans-serif;
+  font-weight: 400;
+  font-size: max(12px, 1.2308cqw);
+  color: #555555;
+  background: #ffffff;
+}
+
+.footer__input::placeholder {
+  color: #c6c6c6;
+}
+
+.footer__input:focus {
+  outline: none;
+  border-color: #f3274c;
+  color: #000000;
+}
+
+/* Same construction as the Best Seller Deals "Product" button */
+.footer__subscribe {
+  position: relative;
+  align-self: flex-start;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: max(140px, 12.2023cqw);
+  height: max(46px, 4.6154cqw);
+  background: #f3274c;
+  border: none;
+  border-radius: 12px;
+  font-family: 'Fredoka One', cursive;
+  font-weight: 400;
+  font-size: max(12px, 1.2308cqw);
+  line-height: 1;
+  color: #ffffff;
+  cursor: pointer;
+  transition: transform 0.25s ease, background-color 0.25s ease;
+}
+
+.footer__subscribe:hover {
+  transform: translateY(-2px);
+  background: #e01f42;
+}
+
+.footer__subscribe::before {
+  content: '';
+  position: absolute;
+  top: -6px;
+  left: 15px;
+  width: calc(100% - 8px);
+  height: calc(100% + 12px);
+  border: 3px solid #f3274c;
+  border-radius: 12px;
+  pointer-events: none;
+  z-index: -1;
+}
+
+.footer__bottom {
+  border-top: 10px solid #ffd40d;
+  padding: 34px 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+}
+
+.footer__copyright {
+  font-family: 'Fredoka One', cursive;
+  font-weight: 400;
+  font-size: max(12px, 1.2308cqw);
+  line-height: max(20px, 2.0515cqw);
+  color: #000000;
+  margin: 0;
+}
+
+.footer__brand {
+  color: #f3274c;
+}
+
+.footer__social {
+  display: flex;
+  gap: max(16px, 3.0769cqw);
+}
+
+.footer__social a {
+  font-family: 'Fredoka One', cursive;
+  font-weight: 400;
+  font-size: max(12px, 1.2308cqw);
+  line-height: max(20px, 2.0515cqw);
+  color: #000000;
+  text-decoration: underline;
+}
+
+/* Sits over the art row so it adds no height below the footer content */
+.footer__animation {
+  position: absolute;
+  left: 50%;
+  bottom: 10px;
+  transform: translateX(-50%);
+  display: block;
+  width: 62px;
+  height: 22px;
+}
+
+/* ---------- Tablet & mobile: About and Menu stay side by side ---------- */
+@media (max-width: 900px) {
+  .footer {
+    padding-top: 64px;
+  }
+
+  .footer__decoration {
+    display: none;
+  }
+
+  .footer__grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    column-gap: 24px;
+    row-gap: 32px;
+    padding-bottom: 48px;
+  }
+
+  .footer__info-card,
+  .footer__newsletter {
+    grid-column: 1 / -1;
+  }
+
+  .footer__info-card {
+    aspect-ratio: auto;
+    padding: 26px 24px 30px 28px;
+    border-radius: 24px;
+  }
+
+  .footer__rating {
+    margin-top: 26px;
+  }
+
+  .footer__logo {
+    width: 150px;
+    margin-bottom: 20px;
+  }
+
+  .footer__column-title {
+    font-size: 22px;
+    line-height: 34px;
+    margin-bottom: 18px;
+  }
+
+  .footer__hours,
+  .footer__rating,
+  .footer__link,
+  .footer__newsletter-text,
+  .footer__input,
+  .footer__copyright,
+  .footer__social a,
+  .footer__subscribe {
+    font-size: 15px;
+  }
+
+  .footer__link,
+  .footer__hours,
+  .footer__rating,
+  .footer__newsletter-text {
+    line-height: 26px;
+  }
+
+  .footer__input {
+    height: 56px;
+    padding: 0 22px;
+  }
+
+  /* Newsletter spans the full width here, so the button sits on the right */
+  .footer__subscribe {
+    align-self: flex-end;
+    width: 158px;
+    height: 54px;
+  }
+
+  .footer__bottom {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 24px 0;
+  }
+
+  .footer__social {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 18px;
+  }
+}
+
+@media (max-width: 520px) {
+  .footer__grid {
+    column-gap: 16px;
+  }
+
+  .footer__column-title {
+    font-size: 19px;
+    line-height: 30px;
+  }
+
+  .footer__hours,
+  .footer__rating,
+  .footer__link,
+  .footer__newsletter-text,
+  .footer__input,
+  .footer__copyright,
+  .footer__social a,
+  .footer__subscribe {
+    font-size: 14px;
+  }
+
+  .footer__logo {
+    width: 132px;
+  }
+
+  .footer__input {
+    height: 52px;
+  }
+
+  .footer__subscribe {
+    width: 146px;
+    height: 50px;
+  }
+}

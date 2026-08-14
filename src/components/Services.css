@@ -1,0 +1,246 @@
+/* Figma #2065:6733 — 1330 × 876.64 at x:310
+   Left grid 713.73, two 326.86 cards, 30px gaps
+   Icons EL-c02d4064 152 outer / EL-4c96e573 143 inner, yellow + 3px white
+   Featured #2065:6770 — 482 × 839 at x:828.53 y:15
+   Fast Food ends 4209.5, Services starts 4329.5 (120px), Packages starts 5306.14 (100px)
+*/
+
+.services {
+  background: #ffffff;
+  max-width: 1920px;
+  margin: 120px auto 100px;
+  padding: 0 clamp(24px, 16.15vw, 310px) 15px;
+}
+
+.services__container {
+  width: 100%;
+  max-width: 1330px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: minmax(0, 713.73fr) minmax(0, 482fr);
+  column-gap: clamp(32px, 8.63%, 115px);
+  align-items: start;
+  padding-top: 14px;
+}
+
+.services__left {
+  min-width: 0;
+}
+
+.services__label {
+  font-family: 'Fredoka One', cursive;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 30px;
+  letter-spacing: 0.1111em;
+  text-transform: uppercase;
+  color: #f3274c;
+  margin: 0 0 4px;
+}
+
+.services__title {
+  font-family: 'Fredoka One', cursive;
+  font-weight: 400;
+  font-size: 50px;
+  line-height: 60px;
+  color: #000000;
+  margin: 0 0 41px;
+}
+
+.services__grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  column-gap: 30px;
+  row-gap: 30px;
+}
+
+/* Figma card frames are 311.5 tall regardless of how far the copy wraps */
+.services__card {
+  min-width: 0;
+  min-height: 311.5px;
+}
+
+.services__icon-wrap {
+  width: 152px;
+  height: 152px;
+  margin-bottom: 30px;
+}
+
+.services__icon-outer {
+  width: 152px;
+  height: 152px;
+  border: 5px solid #ffd40d;
+  border-radius: 76px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.services__card:hover .services__icon-outer {
+  transform: scale(1.08);
+  box-shadow: 0 14px 30px rgba(2, 21, 78, 0.18);
+}
+
+.services__icon-inner {
+  width: 143px;
+  height: 143px;
+  background: #ffd40d;
+  border: 3px solid #ffffff;
+  border-radius: 71.5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+}
+
+.services__icon-inner img {
+  max-width: 95px;
+  max-height: 95px;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+}
+
+.services__card-title {
+  font-family: 'Fredoka One', cursive;
+  font-weight: 400;
+  font-size: 26px;
+  line-height: 31.2px;
+  color: #000000;
+  margin: 0 0 14px;
+}
+
+.services__card-desc {
+  font-family: 'Epilogue', sans-serif;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 26.67px;
+  color: #555555;
+  margin: 0;
+  max-width: 296px;
+}
+
+/* Right column takes its height from the left column instead of the
+   image's own 482 × 839 ratio, so both sides end on the same line. */
+.services__right {
+  position: relative;
+  align-self: stretch;
+  padding-top: 1px;
+  min-width: 0;
+}
+
+.services__featured {
+  position: absolute;
+  inset: 1px 0 0;
+  margin: 0 auto;
+  width: 100%;
+  max-width: 482px;
+  height: calc(100% - 1px);
+  object-fit: contain;
+  object-position: center;
+  display: block;
+}
+
+@media (max-width: 1100px) {
+  .services {
+    margin: 80px auto 72px;
+    padding: 0 clamp(20px, 5vw, 40px);
+  }
+
+  .services__card {
+    min-height: 0;
+  }
+
+  .services__container {
+    grid-template-columns: 1fr;
+    column-gap: 0;
+    row-gap: 40px;
+    padding-top: 0;
+  }
+
+  .services__left {
+    padding-left: 0;
+  }
+
+  .services__right {
+    position: static;
+    padding-top: 0;
+    display: flex;
+    justify-content: center;
+  }
+
+  .services__featured {
+    position: static;
+    width: min(482px, 100%);
+    height: auto;
+    aspect-ratio: 482 / 839;
+  }
+
+  .services__title {
+    font-size: 40px;
+    line-height: 50px;
+    margin-bottom: 28px;
+  }
+
+  .services__grid {
+    column-gap: 24px;
+    row-gap: 28px;
+  }
+}
+
+@media (max-width: 700px) {
+  .services {
+    margin: 56px auto;
+    padding: 0 16px;
+  }
+
+  .services__grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    column-gap: 16px;
+    row-gap: 28px;
+  }
+
+  .services__title {
+    font-size: 32px;
+    line-height: 40px;
+  }
+
+  .services__label {
+    font-size: 16px;
+    line-height: 24px;
+  }
+
+  .services__icon-wrap,
+  .services__icon-outer {
+    width: 112px;
+    height: 112px;
+  }
+
+  .services__icon-outer {
+    border-width: 4px;
+    border-radius: 56px;
+  }
+
+  .services__icon-inner {
+    width: 104px;
+    height: 104px;
+    border-radius: 52px;
+  }
+
+  .services__icon-inner img {
+    max-width: 72px;
+    max-height: 72px;
+  }
+
+  .services__card-title {
+    font-size: 18px;
+    line-height: 24px;
+  }
+
+  .services__card-desc {
+    font-size: 14px;
+    line-height: 22px;
+  }
+}
