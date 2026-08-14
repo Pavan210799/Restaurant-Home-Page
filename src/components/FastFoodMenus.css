@@ -8,7 +8,7 @@
 .fast-food__container {
   max-width: 1920px;
   margin: 0 auto;
-  padding: 0 clamp(24px, 16.15vw, 310px);
+  padding: 0 var(--section-gutter);
 }
 
 .fast-food__header {
@@ -40,8 +40,11 @@
   overflow: visible;
 }
 
-/* Outer frame matches Figma container so the red pill can sit 50/50 */
+/* Outer frame matches Figma container so the red pill can sit 50/50.
+   Type is sized in cqw (Figma px ÷ 4.1333) so every card in the row scales
+   identically and the copy never outgrows its panel. */
 .menu-card {
+  container-type: inline-size;
   position: relative;
   width: 100%;
   max-width: none;
@@ -108,7 +111,7 @@
 .menu-card__title {
   font-family: 'Fredoka One', cursive;
   font-weight: 400;
-  font-size: clamp(18px, 1.35vw, 26px);
+  font-size: max(15px, 6.29cqw);
   line-height: 1.2;
   color: #000000;
   margin: 0 0 0.5em;
@@ -117,7 +120,7 @@
 .menu-card__price {
   font-family: 'Fredoka One', cursive;
   font-weight: 400;
-  font-size: clamp(20px, 1.56vw, 30px);
+  font-size: max(17px, 7.26cqw);
   line-height: 1.4;
   color: #f3274c;
 }
@@ -126,16 +129,16 @@
   position: absolute;
   right: 3%;
   bottom: 4%;
-  width: clamp(36px, 2.6vw, 50px);
-  height: clamp(36px, 2.6vw, 50px);
+  width: max(32px, 12.1cqw);
+  height: max(32px, 12.1cqw);
   background: #ffd40d;
   border: none;
-  border-radius: 7px;
+  border-radius: 1.7cqw;
   display: flex;
   align-items: center;
   justify-content: center;
   color: #000000;
-  font-size: clamp(14px, 0.94vw, 18px);
+  font-size: max(12px, 4.36cqw);
   line-height: 1;
   z-index: 3;
   cursor: pointer;
@@ -155,76 +158,90 @@
 }
 
 .menu-card__cart i {
-  font-size: 18px;
+  font-size: inherit;
 }
 
-/* Opening Times — Figma 413.33 × 230.05, red bar hangs below */
+/* Opening Times — Figma 413.33 × 230.05. Every inner size is expressed in cqw
+   (Figma px ÷ 4.1333) so the card scales as a single piece at any column width.
+   That keeps the copy clear of the red contact card, which always sits 70%
+   inside the yellow with 30% hanging below it. */
 .fast-food__opening {
+  container-type: inline-size;
   position: relative;
   width: 100%;
   max-width: none;
   height: auto;
-  aspect-ratio: 413.33 / 230.05;
+  /* Yellow is 52.88cqw tall so that it plus the red card's 6.96cqw overhang
+     equals .menu-card's 59.84cqw — the whole unit matches its row. */
+  aspect-ratio: 413.33 / 218.5;
   background: #fed30d;
   border-radius: 20px;
   overflow: visible;
-  padding: 8.7% 0 0;
+  padding: 0;
   box-sizing: border-box;
 }
 
 .fast-food__opening-title {
   font-family: 'Fredoka One', cursive;
   font-weight: 400;
-  font-size: 28px;
-  line-height: 46.66px;
+  font-size: 6.77cqw;
+  line-height: 1.5;
   color: #000000;
   text-align: center;
-  margin: 0;
+  margin: 3.5cqw 0 0;
 }
 
 .fast-food__opening-bar {
-  width: 100px;
-  height: 5px;
+  width: 24.2cqw;
+  height: 1.21cqw;
   background: #000000;
   border-radius: 20px;
-  margin: 0 auto 18px;
+  margin: 0 auto 3.6cqw;
 }
 
 .fast-food__hours {
   display: flex;
   justify-content: space-between;
   width: 61%;
-  margin: 0 auto 4%;
+  margin: 0 auto 3.2cqw;
   font-family: 'Fredoka One', cursive;
-  font-size: clamp(13px, 0.83vw, 16px);
+  font-size: 3.87cqw;
   line-height: 1.25;
   color: #000000;
 }
 
+.fast-food__hours:last-of-type {
+  margin-bottom: 0;
+}
+
+/* 23.2cqw tall, offset by 30% of that so it breaks the yellow card's edge */
 .fast-food__phone-box {
   position: absolute;
   left: 2.5%;
   right: 2.5%;
-  top: 68.3%;
+  bottom: -6.96cqw;
   height: auto;
-  min-height: 40.5%;
+  min-height: 23.2cqw;
   background: #f3274c;
-  border-radius: 30px;
-  padding: 4% 4% 3%;
+  border-radius: 7.3cqw;
+  padding: 3.5cqw 4cqw 3cqw;
   text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
   box-sizing: border-box;
 }
 
 .fast-food__phone {
   font-family: 'Fredoka One', cursive;
   font-weight: 400;
-  font-size: 28px;
+  font-size: 6.77cqw;
   line-height: 1.25;
   color: #ffffff;
   position: relative;
-  display: inline-block;
-  margin: 0 0 6px;
-  padding-bottom: 8px;
+  margin: 0 0 1.45cqw;
+  padding-bottom: 1.94cqw;
 }
 
 /* Sits on the box edge below the text, so it never crosses the digits */
@@ -234,7 +251,7 @@
   left: 0;
   right: 0;
   bottom: 0;
-  height: 3px;
+  height: 0.73cqw;
   background: #ffd40d;
   border-radius: 20px;
 }
@@ -242,8 +259,8 @@
 .fast-food__address {
   font-family: 'Fredoka One', cursive;
   font-weight: 400;
-  font-size: 16px;
-  line-height: 20px;
+  font-size: 3.87cqw;
+  line-height: 1.25;
   color: #ffffff;
   margin: 0;
   overflow-wrap: break-word;
@@ -286,34 +303,12 @@
     gap: 20px;
   }
 
-  /* Opening Times flows instead of using the fixed Figma ratio, so the
-     red contact bar can't spill past the yellow card. */
+  /* Spans the row but is capped so the proportional type stays a sensible size;
+     the card keeps its Figma ratio, so the red card still breaks the edge. */
   .fast-food__opening {
     grid-column: 1 / -1;
-    aspect-ratio: auto;
-    padding: 26px 0 0;
-  }
-
-  .fast-food__hours {
-    width: min(320px, 80%);
-    margin: 0 auto 10px;
-  }
-
-  .fast-food__phone-box {
-    position: static;
-    height: auto;
-    min-height: 0;
-    margin: 20px 2.5% 0;
-    padding: 18px 16px;
-  }
-
-  .fast-food__phone {
-    font-size: 24px;
-  }
-
-  .fast-food__address {
-    font-size: 14px;
-    line-height: 19px;
+    max-width: 480px;
+    margin-inline: auto;
   }
 }
 
@@ -371,24 +366,5 @@
 
   .menu-card__cart i {
     font-size: 14px;
-  }
-
-  .fast-food__opening-title {
-    font-size: 22px;
-    line-height: 32px;
-  }
-
-  .fast-food__phone {
-    font-size: 20px;
-    line-height: 1.25;
-  }
-
-  .fast-food__phone-box {
-    padding: 16px 12px;
-  }
-
-  .fast-food__address {
-    font-size: 13px;
-    line-height: 18px;
   }
 }

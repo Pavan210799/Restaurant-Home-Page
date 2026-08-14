@@ -4,6 +4,11 @@
    padding and absolute offsets alike. */
 :root {
   --page-gutter: max(40px, calc((min(100vw, 1920px) - 1920px) / 2 + 355px));
+  /* Section margins: Figma's 310px inset at 1920, held proportional as the
+     viewport narrows. Every section shares this, so their left and right edges
+     stay aligned. Sections whose columns would get too narrow scale their type
+     with the row instead of stealing from the margin. */
+  --section-gutter: clamp(24px, 16.15vw, 310px);
 }
 
 @media (max-width: 1440px) {

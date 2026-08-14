@@ -13,12 +13,13 @@ function Footer() {
   return (
     <footer className="footer">
       <div className="footer__layout">
-        <img
-          src="/images/footer-left-56586a.png"
-          alt=""
-          className="footer__decoration footer__decoration--left"
-          aria-hidden="true"
-        />
+        <div className="footer__art footer__art--left" aria-hidden="true">
+          <img
+            src="/images/footer-left-56586a.png"
+            alt=""
+            className="footer__decoration footer__decoration--left"
+          />
+        </div>
 
         <div className="footer__inner">
           <div className="footer__grid">
@@ -96,12 +97,13 @@ function Footer() {
           </div>
         </div>
 
-        <img
-          src="/images/footer-right-56586a.png"
-          alt=""
-          className="footer__decoration footer__decoration--right"
-          aria-hidden="true"
-        />
+        <div className="footer__art footer__art--right" aria-hidden="true">
+          <img
+            src="/images/footer-right-56586a.png"
+            alt=""
+            className="footer__decoration footer__decoration--right"
+          />
+        </div>
       </div>
 
       <img

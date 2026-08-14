@@ -10,7 +10,7 @@
 .about__container {
   max-width: 1920px;
   margin: 0 auto;
-  padding: 0 clamp(24px, 16.15vw, 310px);
+  padding: 0 var(--section-gutter);
 }
 
 .about__header {
@@ -108,6 +108,51 @@
   line-height: 26.67px;
   color: #555555;
   margin: 0;
+}
+
+/* Two-column range: the copy is sized in cqw so it shrinks and grows with the
+   row exactly as the photo does, keeping their heights in proportion, and the
+   two columns are centred against each other. The px floors stop the type
+   becoming unreadable on narrow laptops; centring holds regardless. */
+@media (min-width: 1101px) {
+  .about__body {
+    container-type: inline-size;
+    align-items: center;
+  }
+
+  .about__content {
+    padding-top: 0;
+  }
+
+  .about__text {
+    font-size: max(14px, 1.2308cqw);
+    line-height: 1.667;
+    margin-bottom: max(20px, 2.6154cqw);
+  }
+
+  .about__features {
+    gap: max(20px, 2.3077cqw);
+  }
+
+  .about__feature {
+    gap: max(12px, 1.1538cqw);
+  }
+
+  .about__feature-icon {
+    width: max(72px, 8.4615cqw);
+    height: max(72px, 8.4615cqw);
+  }
+
+  .about__feature-title {
+    font-size: max(17px, 1.6923cqw);
+    line-height: 1.667;
+    margin-bottom: max(3px, 0.3077cqw);
+  }
+
+  .about__feature-desc {
+    font-size: max(14px, 1.2308cqw);
+    line-height: 1.667;
+  }
 }
 
 /* ——— Tablet ——— */
@@ -209,7 +254,8 @@
 @media (max-width: 420px) {
   .about__feature {
     flex-direction: column;
-    align-items: flex-start;
+    align-items: center;
+    text-align: center;
   }
 
   .about__feature-icon {

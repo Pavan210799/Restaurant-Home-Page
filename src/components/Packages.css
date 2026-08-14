@@ -9,7 +9,7 @@
   background: #ffffff;
   max-width: 1920px;
   margin: 0 auto;
-  padding: 14px clamp(24px, 16.15vw, 310px) 90px;
+  padding: 14px var(--section-gutter) 90px;
 }
 
 .packages__container {

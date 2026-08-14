@@ -9,52 +9,72 @@
 .footer {
   position: relative;
   background: #f5f8fd;
-  padding-top: 100px;
+  padding-top: 60px;
   overflow: hidden;
 }
 
-/* Three columns in Figma proportions: 290 art · 1300 content · 274 art.
-   The art keeps its own size so its height is never squashed; the content
-   column absorbs the remaining width and sits between the two images. */
+/* Three proportional columns with no gap between them: 16% art · 68% content ·
+   16% art. Capped at 1920 like every other section, so the art can't grow
+   without limit on wide displays. */
 .footer__layout {
   display: flex;
   align-items: flex-end;
-  justify-content: space-between;
   width: 100%;
+  max-width: 1920px;
+  margin: 0 auto;
   gap: 0;
 }
 
-/* The art is stretched 15% taller than its natural ratio. It narrows with the
-   viewport instead of disappearing — the three columns can't overlap, so it
-   only ever takes width away from the content column. */
-.footer__decoration {
+/* Art columns take 16% each. Each illustration stays flush to the outer edge so
+   it still bleeds off the page, and the small remainder of the column is all
+   that separates it from the middle column — Figma leaves a 20-36px gap there
+   too. */
+.footer__art {
   flex: 0 0 auto;
-  align-self: flex-end;
-  pointer-events: none;
+  display: flex;
+  align-items: flex-end;
+}
+
+.footer__art--left {
+  width: 16%;
+  justify-content: flex-start;
+}
+
+.footer__art--right {
+  width: 16%;
+  justify-content: flex-end;
+}
+
+/* Stretched 15% taller than its natural ratio, as before. Each width is the
+   midpoint between the earlier inset size and filling the column outright. */
+.footer__decoration {
   height: auto;
+  display: block;
+  pointer-events: none;
   object-fit: fill;
 }
 
-/* 75% of the Figma art widths (290 / 274), keeping the stretched ratios */
 .footer__decoration--left {
-  width: clamp(103px, 11.33vw, 217.5px);
+  width: 85.4%;
   aspect-ratio: 203 / 416;
 }
 
 .footer__decoration--right {
-  width: clamp(97px, 10.7vw, 205.5px);
+  width: 83.44%;
   aspect-ratio: 192 / 354;
 }
 
 .footer__inner {
   position: relative;
   z-index: 1;
-  flex: 1 1 1300px;
+  flex: 0 0 68%;
+  width: 68%;
   min-width: 0;
-  max-width: 1300px;
-  align-self: flex-start;
-  margin: 0 auto;
-  padding: 0 15px;
+  max-width: none;
+  /* Sits on the same baseline as the two art columns */
+  align-self: flex-end;
+  margin: 0;
+  padding: 0;
   container-type: inline-size;
   container-name: footer;
 }
@@ -64,7 +84,7 @@
   grid-template-columns: 390fr 198fr 227fr 360fr;
   column-gap: 3.0769cqw;
   row-gap: 40px;
-  padding-bottom: 80px;
+  padding-bottom: 56px;
 }
 
 .footer__info-card {
@@ -221,9 +241,11 @@
   z-index: -1;
 }
 
+/* Horizontal padding insets the copyright row while the yellow rule, being a
+   border on the box edge, still runs the full width of the middle column. */
 .footer__bottom {
   border-top: 10px solid #ffd40d;
-  padding: 34px 0;
+  padding: 26px max(16px, 3.0769cqw);
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -274,8 +296,16 @@
     padding-top: 64px;
   }
 
-  .footer__decoration {
+  .footer__art {
     display: none;
+  }
+
+  /* With the art columns gone the content takes the whole row and supplies its
+     own side spacing, since there is no longer any art to sit against. */
+  .footer__inner {
+    flex: 1 1 auto;
+    width: 100%;
+    padding: 0 clamp(16px, 4vw, 32px);
   }
 
   .footer__grid {
@@ -345,7 +375,7 @@
     flex-direction: column;
     align-items: center;
     text-align: center;
-    padding: 24px 0;
+    padding: 24px 16px;
   }
 
   .footer__social {

@@ -9,7 +9,7 @@
   background: #ffffff;
   max-width: 1920px;
   margin: 120px auto 100px;
-  padding: 0 clamp(24px, 16.15vw, 310px) 15px;
+  padding: 0 var(--section-gutter) 15px;
 }
 
 .services__container {
