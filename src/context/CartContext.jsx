@@ -37,6 +37,7 @@ function priceToNumber(price) {
 export function CartProvider({ children }) {
   const [items, setItems] = useState(readStoredItems);
   const [toast, setToast] = useState(null);
+  const [cartBump, setCartBump] = useState(0);
 
   useEffect(() => {
     try {
@@ -74,6 +75,7 @@ export function CartProvider({ children }) {
     });
 
     setToast({ id: Date.now(), text: `Added to bag: ${label}` });
+    setCartBump(Date.now());
   }, []);
 
   const placeOrder = useCallback(() => {
@@ -98,8 +100,8 @@ export function CartProvider({ children }) {
   );
 
   const value = useMemo(
-    () => ({ items, count, total, addToCart, removeItem, clearCart, placeOrder, showToast }),
-    [items, count, total, addToCart, removeItem, clearCart, placeOrder, showToast],
+    () => ({ items, count, total, addToCart, removeItem, clearCart, placeOrder, showToast, cartBump }),
+    [items, count, total, addToCart, removeItem, clearCart, placeOrder, showToast, cartBump],
   );
 
   return (

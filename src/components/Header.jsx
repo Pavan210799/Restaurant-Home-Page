@@ -21,13 +21,21 @@ function Header() {
   const [userOpen, setUserOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [activeHref, setActiveHref] = useState('#home');
-  const { count } = useCart();
+  const { count, cartBump } = useCart();
   const { user, openAuth, signOut } = useAuth();
 
   const cartButtonRef = useRef(null);
   const cartPanelRef = useRef(null);
   const userButtonRef = useRef(null);
   const userPanelRef = useRef(null);
+  const [cartBumping, setCartBumping] = useState(false);
+
+  useEffect(() => {
+    if (!cartBump) return undefined;
+    setCartBumping(true);
+    const id = window.setTimeout(() => setCartBumping(false), 520);
+    return () => window.clearTimeout(id);
+  }, [cartBump]);
 
   useEffect(() => {
     const onResize = () => {
@@ -170,7 +178,7 @@ function Header() {
           <button
             type="button"
             ref={cartButtonRef}
-            className="header__cart"
+            className={`header__cart${cartBumping ? ' header__cart--bump' : ''}`}
             aria-label={`Your bag, ${count} item${count === 1 ? '' : 's'}`}
             aria-expanded={cartOpen}
             aria-haspopup="dialog"
@@ -181,7 +189,13 @@ function Header() {
             }}
           >
             <i className="fa-solid fa-shopping-basket" />
-            <span className="header__cart-badge">{badgeLabel}</span>
+            <span
+              className={`header__cart-badge${
+                cartBumping ? ' header__cart-badge--bump' : ''
+              }`}
+            >
+              {badgeLabel}
+            </span>
           </button>
 
           {user ? (

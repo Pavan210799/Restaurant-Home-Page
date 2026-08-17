@@ -167,6 +167,22 @@
   pointer-events: none;
 }
 
+.weekly-special__swap {
+  animation: weekly-tab-swap 0.48s cubic-bezier(0.22, 0.61, 0.36, 1) both;
+}
+
+@keyframes weekly-tab-swap {
+  from {
+    opacity: 0;
+    transform: translateX(calc(var(--tab-dir, 1) * 36px)) scale(0.96);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateX(0) scale(1);
+  }
+}
+
 .weekly-special__content {
   position: absolute;
   left: 23.4076%;
@@ -519,5 +535,11 @@
     width: 176px;
     height: 46px;
     font-size: 15px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .weekly-special__swap {
+    animation: none;
   }
 }

@@ -18,6 +18,15 @@ const features = [
 
 function WeeklySpecial() {
   const [activeTab, setActiveTab] = useState('Buffet Vegas');
+  const [direction, setDirection] = useState(1);
+
+  const selectTab = (tab) => {
+    if (tab === activeTab) return;
+    const prevIndex = tabs.indexOf(activeTab);
+    const nextIndex = tabs.indexOf(tab);
+    setDirection(nextIndex >= prevIndex ? 1 : -1);
+    setActiveTab(tab);
+  };
 
   return (
     <section id="deals" className="weekly-special">
@@ -35,7 +44,7 @@ function WeeklySpecial() {
                     className={`weekly-special__tab${
                       activeTab === tab ? ' weekly-special__tab--active' : ''
                     }`}
-                    onClick={() => setActiveTab(tab)}
+                    onClick={() => selectTab(tab)}
                   >
                     <span className="weekly-special__tab-bullet" aria-hidden="true" />
                     <span>{tab}</span>
@@ -45,14 +54,20 @@ function WeeklySpecial() {
             </ul>
 
             <img
-              className="weekly-special__image"
+              key={activeTab}
+              className="weekly-special__image weekly-special__swap"
+              style={{ '--tab-dir': direction }}
               src="/images/buffet-vegas-56586a.png"
               alt={activeTab}
             />
           </div>
 
           <div className="weekly-special__panel">
-            <div className="weekly-special__content">
+            <div
+              key={activeTab}
+              className="weekly-special__content weekly-special__swap"
+              style={{ '--tab-dir': direction }}
+            >
               <h3 className="weekly-special__dish-title">{activeTab}</h3>
 
               <ul className="weekly-special__features">

@@ -165,6 +165,50 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  transform-origin: center;
+}
+
+.header__cart--bump {
+  animation: cart-icon-wiggle 0.5s cubic-bezier(0.22, 1.08, 0.36, 1);
+}
+
+.header__cart-badge--bump {
+  animation: cart-badge-pop 0.5s cubic-bezier(0.22, 1.08, 0.36, 1);
+}
+
+@keyframes cart-icon-wiggle {
+  0%,
+  100% {
+    transform: rotate(0deg);
+  }
+
+  25% {
+    transform: rotate(-12deg) scale(1.08);
+  }
+
+  50% {
+    transform: rotate(10deg) scale(1.12);
+  }
+
+  75% {
+    transform: rotate(-6deg) scale(1.04);
+  }
+}
+
+@keyframes cart-badge-pop {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+
+  35% {
+    transform: scale(1.45);
+    background: #f3274c;
+  }
+
+  65% {
+    transform: scale(0.92);
+  }
 }
 
 /* Figma: 182 × 57, padding ~20px 50px, #FFC222, radius 7 */
@@ -516,5 +560,12 @@
 
   .header__actions {
     gap: 18px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .header__cart--bump,
+  .header__cart-badge--bump {
+    animation: none;
   }
 }
