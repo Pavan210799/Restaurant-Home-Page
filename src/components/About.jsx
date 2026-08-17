@@ -30,7 +30,7 @@ function About() {
           <div className="about__image-wrap">
             <img
               src="/images/images-bg-56586a.png"
-              alt="Restaurant interior"
+              alt="Restaurant interior and mobile food ordering"
               className="about__image"
             />
           </div>
@@ -46,13 +46,15 @@ function About() {
             <div className="about__features">
               {features.map((feature) => (
                 <div key={feature.title} className="about__feature">
-                  <img
-                    src={feature.icon}
-                    alt=""
-                    className="about__feature-icon"
-                    width={110}
-                    height={110}
-                  />
+                  <span className="about__feature-icon-wrap">
+                    <img
+                      src={feature.icon}
+                      alt=""
+                      className="about__feature-icon"
+                      width={110}
+                      height={110}
+                    />
+                  </span>
                   <div>
                     <h3 className="about__feature-title">{feature.title}</h3>
                     <p className="about__feature-desc">
