@@ -25,7 +25,7 @@ const services = [
 
 function Services() {
   return (
-    <section className="services">
+    <section id="services" className="services">
       <div className="services__container">
         <div className="services__left">
           <p className="services__label">Food Servicesa</p>

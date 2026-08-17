@@ -1,3 +1,4 @@
+import { useCart } from '../context/CartContext';
 import './Cocktail.css';
 
 const products = [
@@ -30,8 +31,10 @@ const products = [
 ];
 
 function Cocktail() {
+  const { addToCart } = useCart();
+
   return (
-    <section className="cocktail">
+    <section id="complimentary" className="cocktail">
       <div className="cocktail__container">
         <h2 className="cocktail__title">
           A Complimentary Cocktail, Coffee,
@@ -43,39 +46,49 @@ function Cocktail() {
         </p>
 
         <div className="cocktail__grid">
-          {products.map((item) => (
-            <article key={item.title} className="cocktail__card">
-              <div className="cocktail__card-white" />
-              <div className="cocktail__card-accent" />
-              <img
-                className="cocktail__card-image"
-                src={item.image}
-                alt={item.title.replace('\n', ' ')}
-              />
+          {products.map((item) => {
+            const label = item.title.replace(/\n/g, ' ');
+            return (
+              <article key={item.title} className="cocktail__card">
+                <div className="cocktail__card-white" />
+                <div className="cocktail__card-accent" />
+                <img
+                  className="cocktail__card-image"
+                  src={item.image}
+                  alt={label}
+                />
 
-              <div className="cocktail__card-body">
-                <p className="cocktail__weight">{item.weight}</p>
-                <h3 className="cocktail__card-title">
-                  {item.title.split('\n').map((line, i) => (
-                    <span key={i}>
-                      {line}
-                      {i === 0 && <br />}
-                    </span>
-                  ))}
-                </h3>
-                <div className="cocktail__prices">
-                  {item.oldPrice && (
-                    <span className="cocktail__old-price">{item.oldPrice}</span>
-                  )}
-                  <span className="cocktail__price">{item.price}</span>
+                <div className="cocktail__card-body">
+                  <p className="cocktail__weight">{item.weight}</p>
+                  <h3 className="cocktail__card-title">
+                    {item.title.split('\n').map((line, i) => (
+                      <span key={i}>
+                        {line}
+                        {i === 0 && <br />}
+                      </span>
+                    ))}
+                  </h3>
+                  <div className="cocktail__prices">
+                    {item.oldPrice && (
+                      <span className="cocktail__old-price">{item.oldPrice}</span>
+                    )}
+                    <span className="cocktail__price">{item.price}</span>
+                  </div>
                 </div>
-              </div>
 
-              <button className="cocktail__cart" aria-label="Add to cart">
-                <i className="fa-solid fa-bag-shopping" />
-              </button>
-            </article>
-          ))}
+                <button
+                  type="button"
+                  className="cocktail__cart"
+                  aria-label={`Add ${label} to bag`}
+                  onClick={() =>
+                    addToCart({ label, price: item.price, image: item.image })
+                  }
+                >
+                  <i className="fa-solid fa-bag-shopping" />
+                </button>
+              </article>
+            );
+          })}
         </div>
 
         <p className="cocktail__booking">

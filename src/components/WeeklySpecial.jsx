@@ -20,7 +20,7 @@ function WeeklySpecial() {
   const [activeTab, setActiveTab] = useState('Buffet Vegas');
 
   return (
-    <section className="weekly-special">
+    <section id="deals" className="weekly-special">
       <div className="weekly-special__container">
         <p className="weekly-special__label">Weekly Special</p>
         <h2 className="weekly-special__title">Best Seller Deals</h2>
@@ -69,10 +69,10 @@ function WeeklySpecial() {
                 <span className="weekly-special__old-price">$14.85</span>
               </p>
 
-              <button type="button" className="weekly-special__btn">
+              <a href="#complimentary" className="weekly-special__btn">
                 <span className="weekly-special__btn-border" aria-hidden="true" />
                 Product
-              </button>
+              </a>
             </div>
           </div>
         </div>

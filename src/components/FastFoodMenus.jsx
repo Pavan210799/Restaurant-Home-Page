@@ -1,3 +1,4 @@
+import { useCart } from '../context/CartContext';
 import './FastFoodMenus.css';
 
 const menuItems = [
@@ -44,6 +45,9 @@ const menuItems = [
 ];
 
 function MenuCard({ item }) {
+  const { addToCart } = useCart();
+  const label = item.title.replace(/\n/g, ' ');
+
   return (
     <article className="menu-card">
       <div className="menu-card__white">
@@ -58,23 +62,26 @@ function MenuCard({ item }) {
           </h3>
           <span className="menu-card__price">{item.price}</span>
         </div>
-        <button className="menu-card__cart" type="button" aria-label="Add to bag">
+        <button
+          className="menu-card__cart"
+          type="button"
+          aria-label={`Add ${label} to bag`}
+          onClick={() =>
+            addToCart({ label, price: item.price, image: item.image })
+          }
+        >
           <i className="fa-solid fa-bag-shopping" />
         </button>
       </div>
       <div className="menu-card__accent" aria-hidden="true" />
-      <img
-        className="menu-card__image"
-        src={item.image}
-        alt={item.title.replace('\n', ' ')}
-      />
+      <img className="menu-card__image" src={item.image} alt={label} />
     </article>
   );
 }
 
 function FastFoodMenus() {
   return (
-    <section className="fast-food">
+    <section id="menu" className="fast-food">
       <div className="fast-food__container">
         <div className="fast-food__header">
           <h2 className="fast-food__title">Fast Food Menus</h2>

@@ -1,12 +1,33 @@
+import { useState } from 'react';
 import './Hero.css';
 
+/* Figma ships three hero slides carrying the same artwork and copy, so moving
+   between them replays the entrance animation instead of swapping content. */
+const SLIDE_COUNT = 3;
+
 function Hero() {
+  const [slide, setSlide] = useState(0);
+  const [direction, setDirection] = useState(1);
+
+  const goBy = (step) => {
+    setDirection(step);
+    setSlide((current) => (current + step + SLIDE_COUNT) % SLIDE_COUNT);
+  };
+
+  const goTo = (index) => {
+    if (index === slide) return;
+    setDirection(index > slide ? 1 : -1);
+    setSlide(index);
+  };
+
+  const slideStyle = { '--hero-dir': direction };
+
   return (
-    <section className="hero">
+    <section id="home" className="hero">
       <span className="hero__blob" aria-hidden="true" />
 
       <div className="hero__container">
-        <div className="hero__content">
+        <div className="hero__content" key={`copy-${slide}`} style={slideStyle}>
           <p className="hero__subtitle">Fastest Delivery &amp; Easy Pickup</p>
           <h1 className="hero__title">Kings Burger</h1>
           <p className="hero__description">
@@ -16,10 +37,10 @@ function Hero() {
           </p>
 
           <div className="hero__actions">
-            <button className="hero__btn">
+            <a href="#menu" className="hero__btn">
               <span className="hero__btn-border" aria-hidden="true" />
               View Our Menu
-            </button>
+            </a>
             <img
               className="hero__stars"
               src="/images/rating-56586a.png"
@@ -29,7 +50,7 @@ function Hero() {
           </div>
         </div>
 
-        <div className="hero__visual">
+        <div className="hero__visual" key={`visual-${slide}`} style={slideStyle}>
           <img
             src="/images/burger-hero-56586a.png"
             alt="Delicious burger"
@@ -43,7 +64,12 @@ function Hero() {
         </div>
       </div>
 
-      <button className="hero__arrow hero__arrow--prev" aria-label="Previous slide">
+      <button
+        type="button"
+        className="hero__arrow hero__arrow--prev"
+        aria-label="Previous slide"
+        onClick={() => goBy(-1)}
+      >
         <svg width="70" height="60" viewBox="0 0 70 60" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
           <rect x="0.5" y="0.5" width="59" height="59" rx="29.5" stroke="white" />
           <path
@@ -52,7 +78,12 @@ function Hero() {
           />
         </svg>
       </button>
-      <button className="hero__arrow hero__arrow--next" aria-label="Next slide">
+      <button
+        type="button"
+        className="hero__arrow hero__arrow--next"
+        aria-label="Next slide"
+        onClick={() => goBy(1)}
+      >
         <svg width="69" height="60" viewBox="0 0 69 60" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
           <rect x="9.36328" y="0.5" width="59" height="59" rx="29.5" stroke="white" />
           <path
@@ -63,9 +94,16 @@ function Hero() {
       </button>
 
       <div className="hero__bullets">
-        <span className="hero__bullet hero__bullet--active" />
-        <span className="hero__bullet" />
-        <span className="hero__bullet" />
+        {Array.from({ length: SLIDE_COUNT }, (_, index) => (
+          <button
+            key={index}
+            type="button"
+            className={`hero__bullet${index === slide ? ' hero__bullet--active' : ''}`}
+            aria-label={`Slide ${index + 1}`}
+            aria-current={index === slide ? 'true' : undefined}
+            onClick={() => goTo(index)}
+          />
+        ))}
       </div>
     </section>
   );

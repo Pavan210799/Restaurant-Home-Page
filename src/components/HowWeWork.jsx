@@ -26,7 +26,7 @@ const steps = [
 
 function HowWeWork() {
   return (
-    <section className="how-we-work">
+    <section id="how-we-work" className="how-we-work">
       <img
         className="how-we-work__bg"
         src="/images/how-we-work-bg-808e5a.png"

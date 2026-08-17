@@ -42,7 +42,7 @@ function Instagram() {
   }, []);
 
   return (
-    <section className="instagram">
+    <section id="blog" className="instagram">
       <div className="instagram__header">
         <div className="instagram__icon-wrap">
           <i className="fa-brands fa-instagram instagram__icon" />

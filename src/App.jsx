@@ -1,7 +1,12 @@
 import HomePage from './pages/HomePage';
+import { CartProvider } from './context/CartContext';
 
 function App() {
-  return <HomePage />;
+  return (
+    <CartProvider>
+      <HomePage />
+    </CartProvider>
+  );
 }
 
 export default App;

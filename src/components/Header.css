@@ -73,6 +73,14 @@
   color: #f3274c;
 }
 
+.header__nav-link--active {
+  color: #f3274c;
+}
+
+.header__nav-link--active .header__chevron {
+  color: #f3274c;
+}
+
 .header__chevron {
   font-size: 12px;
   line-height: 1;
@@ -104,8 +112,9 @@
   position: absolute;
   top: -7px;
   right: -8px;
-  width: 16px;
+  min-width: 16px;
   height: 16px;
+  padding: 0 3px;
   background: #212121;
   border-radius: 50%;
   font-family: 'Oswald', sans-serif;
@@ -244,6 +253,10 @@
   color: #f3274c;
 }
 
+.header__mobile-link--active {
+  color: #f3274c;
+}
+
 .header__mobile-contact {
   margin-top: 20px;
   width: 100%;
@@ -256,6 +269,9 @@
   letter-spacing: 0.0471em;
   text-transform: capitalize;
   border-radius: 7px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .header__backdrop {
@@ -323,11 +339,7 @@
     height: 54px;
   }
 
-  .header__cart {
-    display: none;
-  }
-
   .header__actions {
-    gap: 0;
+    gap: 18px;
   }
 }

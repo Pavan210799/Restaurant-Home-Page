@@ -15,7 +15,7 @@ const features = [
 
 function About() {
   return (
-    <section className="about">
+    <section id="about" className="about">
       <div className="about__container">
         <div className="about__header">
           <p className="about__label">About The Food Restaurant</p>

@@ -202,6 +202,26 @@
   color: #000000;
 }
 
+.footer__input--error {
+  border-color: #f3274c;
+}
+
+.footer__form-message {
+  margin: 0;
+  font-family: 'Epilogue', sans-serif;
+  font-weight: 500;
+  font-size: max(12px, 1.1538cqw);
+  line-height: 1.4;
+}
+
+.footer__form-message--error {
+  color: #f3274c;
+}
+
+.footer__form-message--success {
+  color: #00a149;
+}
+
 /* Same construction as the Best Seller Deals "Product" button */
 .footer__subscribe {
   position: relative;

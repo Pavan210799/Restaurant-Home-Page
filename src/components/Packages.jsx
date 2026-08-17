@@ -25,7 +25,7 @@ const packages = [
 
 function Packages() {
   return (
-    <section className="packages">
+    <section id="packages" className="packages">
       <div className="packages__container">
         <div className="packages__header">
           <p className="packages__label">PACKAGES</p>

@@ -37,12 +37,48 @@
   padding: 0;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 body {
   margin: 0;
   font-family: 'Epilogue', sans-serif;
   color: #555555;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+/* Keep in-page targets clear of the fixed 97px header */
+section[id],
+footer[id] {
+  scroll-margin-top: 97px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
+
+/* Lightweight cart toast — fixed, no layout impact on page sections */
+.cart-toast {
+  position: fixed;
+  left: 50%;
+  bottom: 28px;
+  z-index: 2000;
+  transform: translateX(-50%);
+  max-width: min(90vw, 360px);
+  padding: 12px 18px;
+  background: #212121;
+  color: #ffffff;
+  font-family: 'Epilogue', sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1.3;
+  border-radius: 10px;
+  text-align: center;
+  pointer-events: none;
 }
 
 #root {

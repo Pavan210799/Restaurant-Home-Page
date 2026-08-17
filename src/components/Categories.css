@@ -3,6 +3,8 @@
 .categories {
   padding: 15px 0 128px;
   background: #ffffff;
+  /* Keeps the slide-in from adding a horizontal scrollbar on narrow screens */
+  overflow-x: clip;
 }
 
 .categories__container {
@@ -38,6 +40,27 @@
   grid-template-columns: repeat(4, minmax(0, 1fr));
   gap: 30px;
   margin: 0 auto 50px;
+  animation: categories-slide-in 0.5s cubic-bezier(0.22, 0.61, 0.36, 1) both;
+}
+
+/* Changing the dot remounts the row, so the rotated cards slide in from the
+   side the carousel moved towards. */
+@keyframes categories-slide-in {
+  from {
+    opacity: 0;
+    transform: translate3d(calc(var(--categories-dir, 1) * 48px), 0, 0);
+  }
+
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .categories__grid {
+    animation: none;
+  }
 }
 
 .categories__card {

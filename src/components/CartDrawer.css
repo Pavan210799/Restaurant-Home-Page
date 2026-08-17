@@ -1,0 +1,229 @@
+/* Mini bag drawer — hangs below the fixed header, aligned to the page gutter.
+   Uses the page palette: red #F3274C, yellow #FFD40D, Fredoka headings. */
+/* Anchored to the header container's content edge, so it lines up with the
+   Contact Us button at every width (the container centres above 1920px). */
+.cart-drawer {
+  position: absolute;
+  top: calc(100% + 8px);
+  right: var(--page-gutter);
+  z-index: 1010;
+  width: min(340px, calc(100vw - 32px));
+  max-height: min(70vh, 520px);
+  display: flex;
+  flex-direction: column;
+  background: #ffffff;
+  border: 3px solid #ffd40d;
+  border-radius: 20px;
+  box-shadow: 0 18px 48px rgba(0, 22, 89, 0.18);
+  overflow: hidden;
+}
+
+.cart-drawer__head {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 16px 18px 14px;
+  border-bottom: 2px solid #f5f8fd;
+}
+
+.cart-drawer__title {
+  flex: 1 1 auto;
+  margin: 0;
+  font-family: 'Fredoka One', cursive;
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 1.2;
+  color: #000000;
+}
+
+.cart-drawer__count {
+  font-family: 'Epilogue', sans-serif;
+  font-weight: 600;
+  font-size: 12px;
+  color: #f3274c;
+  white-space: nowrap;
+}
+
+.cart-drawer__close {
+  width: 28px;
+  height: 28px;
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: #f5f8fd;
+  border-radius: 50%;
+  font-size: 13px;
+  color: #212121;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.cart-drawer__close:hover {
+  background: #f3274c;
+  color: #ffffff;
+}
+
+.cart-drawer__empty {
+  margin: 0;
+  padding: 26px 20px 30px;
+  font-family: 'Epilogue', sans-serif;
+  font-size: 14px;
+  line-height: 1.6;
+  color: #555555;
+  text-align: center;
+}
+
+.cart-drawer__list {
+  flex: 1 1 auto;
+  margin: 0;
+  padding: 8px;
+  list-style: none;
+  overflow-y: auto;
+}
+
+.cart-drawer__item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px;
+  border-radius: 14px;
+  transition: background-color 0.2s ease;
+}
+
+.cart-drawer__item:hover {
+  background: #f5f8fd;
+}
+
+.cart-drawer__thumb {
+  width: 48px;
+  height: 48px;
+  flex-shrink: 0;
+  border-radius: 50%;
+  background: #f3274c;
+  object-fit: cover;
+}
+
+.cart-drawer__thumb--blank {
+  display: block;
+}
+
+.cart-drawer__info {
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+.cart-drawer__name {
+  margin: 0 0 2px;
+  font-family: 'Fredoka One', cursive;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 1.3;
+  color: #000000;
+}
+
+.cart-drawer__meta {
+  margin: 0;
+  font-family: 'Fredoka One', cursive;
+  font-weight: 400;
+  font-size: 13px;
+  color: #f3274c;
+}
+
+.cart-drawer__qty {
+  color: #555555;
+}
+
+.cart-drawer__remove {
+  width: 32px;
+  height: 32px;
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: #ffd40d;
+  border-radius: 8px;
+  font-size: 13px;
+  color: #000000;
+  transition: background-color 0.2s ease, color 0.2s ease,
+    transform 0.15s ease;
+}
+
+.cart-drawer__remove:hover {
+  background: #f3274c;
+  color: #ffffff;
+}
+
+.cart-drawer__remove:active {
+  transform: scale(0.92);
+}
+
+.cart-drawer__foot {
+  padding: 14px 18px 18px;
+  border-top: 2px solid #f5f8fd;
+}
+
+.cart-drawer__total {
+  margin: 0 0 12px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-family: 'Fredoka One', cursive;
+  font-weight: 400;
+  font-size: 15px;
+  color: #000000;
+}
+
+.cart-drawer__total strong {
+  font-weight: 400;
+  color: #f3274c;
+}
+
+.cart-drawer__actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.cart-drawer__clear {
+  flex: 0 0 auto;
+  height: 40px;
+  padding: 0 14px;
+  background: #ffffff;
+  border: 2px solid #f3274c;
+  border-radius: 10px;
+  font-family: 'Fredoka One', cursive;
+  font-size: 13px;
+  color: #f3274c;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.cart-drawer__clear:hover {
+  background: #f3274c;
+  color: #ffffff;
+}
+
+.cart-drawer__cta {
+  flex: 1 1 auto;
+  height: 40px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: #f3274c;
+  border-radius: 10px;
+  font-family: 'Fredoka One', cursive;
+  font-size: 13px;
+  color: #ffffff;
+  transition: background-color 0.2s ease;
+}
+
+.cart-drawer__cta:hover {
+  background: #e01f42;
+}
+
+@media (max-width: 480px) {
+  .cart-drawer {
+    right: 12px;
+    left: 12px;
+    width: auto;
+  }
+}
