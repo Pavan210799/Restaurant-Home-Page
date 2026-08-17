@@ -1,10 +1,22 @@
 import { useCart } from '../context/CartContext';
+import { useAuth } from '../context/AuthContext';
 import './CartDrawer.css';
 
 function CartDrawer({ open, onClose, panelRef }) {
-  const { items, count, total, removeItem, clearCart } = useCart();
+  const { items, count, total, removeItem, clearCart, placeOrder } = useCart();
+  const { user, openAuth } = useAuth();
 
   if (!open) return null;
+
+  const handleCheckout = () => {
+    if (!user) {
+      onClose();
+      openAuth('signin');
+      return;
+    }
+    placeOrder();
+    onClose();
+  };
 
   return (
     <div
@@ -78,9 +90,13 @@ function CartDrawer({ open, onClose, panelRef }) {
               >
                 Clear bag
               </button>
-              <a className="cart-drawer__cta" href="#menu" onClick={onClose}>
-                Add more
-              </a>
+              <button
+                type="button"
+                className="cart-drawer__checkout"
+                onClick={handleCheckout}
+              >
+                {user ? 'Place order' : 'Sign in to checkout'}
+              </button>
             </div>
           </div>
         </>

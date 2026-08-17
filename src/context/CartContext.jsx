@@ -52,6 +52,10 @@ export function CartProvider({ children }) {
     return () => window.clearTimeout(id);
   }, [toast]);
 
+  const showToast = useCallback((text) => {
+    setToast({ id: Date.now(), text });
+  }, []);
+
   const addToCart = useCallback((item) => {
     const label = typeof item === 'string' ? item : item?.label;
     if (!label) return;
@@ -69,7 +73,12 @@ export function CartProvider({ children }) {
       return next;
     });
 
-    setToast({ id: Date.now(), label });
+    setToast({ id: Date.now(), text: `Added to bag: ${label}` });
+  }, []);
+
+  const placeOrder = useCallback(() => {
+    setItems([]);
+    setToast({ id: Date.now(), text: 'Order placed! The kitchen is on it.' });
   }, []);
 
   const removeItem = useCallback((label) => {
@@ -89,8 +98,8 @@ export function CartProvider({ children }) {
   );
 
   const value = useMemo(
-    () => ({ items, count, total, addToCart, removeItem, clearCart }),
-    [items, count, total, addToCart, removeItem, clearCart],
+    () => ({ items, count, total, addToCart, removeItem, clearCart, placeOrder, showToast }),
+    [items, count, total, addToCart, removeItem, clearCart, placeOrder, showToast],
   );
 
   return (
@@ -98,7 +107,7 @@ export function CartProvider({ children }) {
       {children}
       {toast && (
         <div className="cart-toast" role="status" aria-live="polite">
-          Added to bag{toast.label ? `: ${toast.label}` : ''}
+          {toast.text}
         </div>
       )}
     </CartContext.Provider>

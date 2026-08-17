@@ -7,6 +7,14 @@
   height: 97px;
   background: #ffffff;
   box-shadow: 0 0 62px rgba(0, 22, 89, 0.17);
+  transition:
+    height 0.35s cubic-bezier(0.22, 0.61, 0.36, 1),
+    box-shadow 0.35s ease;
+}
+
+.header--scrolled {
+  height: 72px;
+  box-shadow: 0 8px 32px rgba(0, 22, 89, 0.14);
 }
 
 .header__container {
@@ -28,6 +36,11 @@
   align-items: center;
   flex-shrink: 0;
   height: 97px;
+  transition: height 0.35s cubic-bezier(0.22, 0.61, 0.36, 1);
+}
+
+.header--scrolled .header__logo {
+  height: 72px;
 }
 
 .header__logo img {
@@ -35,6 +48,14 @@
   height: 73px;
   object-fit: contain;
   object-position: left center;
+  transition:
+    width 0.35s cubic-bezier(0.22, 0.61, 0.36, 1),
+    height 0.35s cubic-bezier(0.22, 0.61, 0.36, 1);
+}
+
+.header--scrolled .header__logo img {
+  width: 120px;
+  height: 58px;
 }
 
 .header__nav {
@@ -67,6 +88,25 @@
   gap: 3px;
   padding: 6px 0;
   white-space: nowrap;
+  position: relative;
+}
+
+.header__nav-link::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: 2px;
+  width: 100%;
+  height: 2px;
+  background: #f3274c;
+  transform: scaleX(0);
+  transform-origin: left center;
+  transition: transform 0.25s ease;
+}
+
+.header__nav-link:hover::after,
+.header__nav-link--active::after {
+  transform: scaleX(1);
 }
 
 .header__nav-link:hover {
@@ -150,6 +190,124 @@
 
 .header__contact-btn:hover {
   background: #ffd40d;
+}
+
+.header__signin {
+  height: 44px;
+  padding: 0 18px;
+  background: #ffffff;
+  border: 2px solid #f3274c;
+  border-radius: 7px;
+  font-family: 'Oswald', sans-serif;
+  font-size: 15px;
+  font-weight: 600;
+  color: #f3274c;
+  transition: background-color 0.2s ease, color 0.2s ease, transform 0.2s ease;
+}
+
+.header__signin:hover {
+  background: #f3274c;
+  color: #ffffff;
+  transform: translateY(-1px);
+}
+
+.header__user-wrap {
+  position: relative;
+}
+
+.header__user-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 4px 10px 4px 4px;
+  background: #f5f8fd;
+  border-radius: 999px;
+  transition: background-color 0.2s ease, transform 0.2s ease;
+}
+
+.header__user-btn:hover {
+  background: #ffe8ed;
+  transform: translateY(-1px);
+}
+
+.header__user-avatar {
+  width: 34px;
+  height: 34px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: #f3274c;
+  font-family: 'Fredoka One', cursive;
+  font-size: 15px;
+  color: #ffffff;
+}
+
+.header__user-name {
+  font-family: 'Oswald', sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  color: #212121;
+  max-width: 72px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.header__user-menu {
+  position: absolute;
+  top: calc(100% + 10px);
+  right: 0;
+  z-index: 1010;
+  width: 220px;
+  padding: 16px;
+  background: #ffffff;
+  border: 3px solid #ffd40d;
+  border-radius: 16px;
+  box-shadow: 0 16px 40px rgba(0, 22, 89, 0.16);
+  animation: user-menu-in 0.3s cubic-bezier(0.22, 1.02, 0.36, 1) both;
+}
+
+@keyframes user-menu-in {
+  from {
+    opacity: 0;
+    transform: translateY(-8px) scale(0.96);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.header__user-greet {
+  margin: 0 0 2px;
+  font-family: 'Fredoka One', cursive;
+  font-size: 16px;
+  color: #000000;
+}
+
+.header__user-email {
+  margin: 0 0 12px;
+  font-family: 'Epilogue', sans-serif;
+  font-size: 12px;
+  color: #555555;
+  word-break: break-all;
+}
+
+.header__user-signout {
+  width: 100%;
+  height: 38px;
+  background: #f3274c;
+  border-radius: 8px;
+  font-family: 'Fredoka One', cursive;
+  font-size: 14px;
+  color: #ffffff;
+  transition: background-color 0.2s ease;
+}
+
+.header__user-signout:hover {
+  background: #e01f42;
 }
 
 /* Figma hamburger: 31 × 18 — short (right) / long / short (left) */
@@ -257,6 +415,19 @@
   color: #f3274c;
 }
 
+.header__mobile-signin {
+  margin-top: 16px;
+  width: 100%;
+  height: 48px;
+  background: #ffffff;
+  border: 2px solid #f3274c;
+  border-radius: 7px;
+  font-family: 'Oswald', sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+  color: #f3274c;
+}
+
 .header__mobile-contact {
   margin-top: 20px;
   width: 100%;
@@ -309,6 +480,10 @@
   }
 
   .header__contact-btn {
+    display: none;
+  }
+
+  .header__signin {
     display: none;
   }
 

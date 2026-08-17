@@ -180,6 +180,14 @@
   overflow: visible;
 }
 
+.hero__visual-parallax {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transition: transform 0.35s ease-out;
+  will-change: transform;
+}
+
 .hero__burger {
   display: block;
   width: 802px;

@@ -1,4 +1,5 @@
-import { useState } from 'react';
+import { useState, useEffect, useRef } from 'react';
+import FloatingIngredients from './FloatingIngredients';
 import './Hero.css';
 
 /* Figma ships three hero slides carrying the same artwork and copy, so moving
@@ -8,6 +9,31 @@ const SLIDE_COUNT = 3;
 function Hero() {
   const [slide, setSlide] = useState(0);
   const [direction, setDirection] = useState(1);
+  const [tilt, setTilt] = useState({ x: 0, y: 0 });
+  const heroRef = useRef(null);
+
+  useEffect(() => {
+    const node = heroRef.current;
+    if (!node || window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      return undefined;
+    }
+
+    const onMove = (event) => {
+      const rect = node.getBoundingClientRect();
+      const x = ((event.clientX - rect.left) / rect.width - 0.5) * 14;
+      const y = ((event.clientY - rect.top) / rect.height - 0.5) * 10;
+      setTilt({ x, y });
+    };
+
+    const onLeave = () => setTilt({ x: 0, y: 0 });
+
+    node.addEventListener('mousemove', onMove);
+    node.addEventListener('mouseleave', onLeave);
+    return () => {
+      node.removeEventListener('mousemove', onMove);
+      node.removeEventListener('mouseleave', onLeave);
+    };
+  }, []);
 
   const goBy = (step) => {
     setDirection(step);
@@ -23,7 +49,8 @@ function Hero() {
   const slideStyle = { '--hero-dir': direction };
 
   return (
-    <section id="home" className="hero">
+    <section id="home" className="hero" ref={heroRef}>
+      <FloatingIngredients />
       <span className="hero__blob" aria-hidden="true" />
 
       <div className="hero__container">
@@ -51,6 +78,12 @@ function Hero() {
         </div>
 
         <div className="hero__visual" key={`visual-${slide}`} style={slideStyle}>
+          <div
+            className="hero__visual-parallax"
+            style={{
+              transform: `translate3d(${tilt.x}px, ${tilt.y}px, 0)`,
+            }}
+          >
           <img
             src="/images/burger-hero-56586a.png"
             alt="Delicious burger"
@@ -61,6 +94,7 @@ function Hero() {
             alt="Up to 20% discount"
             className="hero__discount"
           />
+          </div>
         </div>
       </div>
 

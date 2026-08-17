@@ -1,5 +1,6 @@
 import { useState, useEffect, useRef } from 'react';
 import { useCart } from '../context/CartContext';
+import { useAuth } from '../context/AuthContext';
 import CartDrawer from './CartDrawer';
 import './Header.css';
 
@@ -17,11 +18,16 @@ const SECTION_IDS = navItems.map((item) => item.href.slice(1));
 function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [cartOpen, setCartOpen] = useState(false);
+  const [userOpen, setUserOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
   const [activeHref, setActiveHref] = useState('#home');
   const { count } = useCart();
+  const { user, openAuth, signOut } = useAuth();
 
   const cartButtonRef = useRef(null);
   const cartPanelRef = useRef(null);
+  const userButtonRef = useRef(null);
+  const userPanelRef = useRef(null);
 
   useEffect(() => {
     const onResize = () => {
@@ -38,7 +44,13 @@ function Header() {
     };
   }, [menuOpen]);
 
-  // Dismiss the bag on an outside click or Escape
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 48);
+    onScroll();
+    window.addEventListener('scroll', onScroll, { passive: true });
+    return () => window.removeEventListener('scroll', onScroll);
+  }, []);
+
   useEffect(() => {
     if (!cartOpen) return undefined;
 
@@ -61,6 +73,29 @@ function Header() {
       document.removeEventListener('keydown', onKeyDown);
     };
   }, [cartOpen]);
+
+  useEffect(() => {
+    if (!userOpen) return undefined;
+
+    const onPointerDown = (event) => {
+      const insidePanel = userPanelRef.current?.contains(event.target);
+      const onButton = userButtonRef.current?.contains(event.target);
+      if (!insidePanel && !onButton) setUserOpen(false);
+    };
+
+    const onKeyDown = (event) => {
+      if (event.key === 'Escape') setUserOpen(false);
+    };
+
+    document.addEventListener('mousedown', onPointerDown);
+    document.addEventListener('touchstart', onPointerDown);
+    document.addEventListener('keydown', onKeyDown);
+    return () => {
+      document.removeEventListener('mousedown', onPointerDown);
+      document.removeEventListener('touchstart', onPointerDown);
+      document.removeEventListener('keydown', onKeyDown);
+    };
+  }, [userOpen]);
 
   useEffect(() => {
     const headerOffset = 110;
@@ -96,9 +131,14 @@ function Header() {
 
   const closeMenu = () => setMenuOpen(false);
   const badgeLabel = count > 99 ? '99+' : String(count);
+  const initial = user?.name?.charAt(0)?.toUpperCase() ?? '?';
 
   return (
-    <header className={`header${menuOpen ? ' header--menu-open' : ''}`}>
+    <header
+      className={`header${menuOpen ? ' header--menu-open' : ''}${
+        scrolled ? ' header--scrolled' : ''
+      }`}
+    >
       <div className="header__container">
         <a href="#home" className="header__logo" onClick={closeMenu}>
           <img src="/images/logo-69d896.png" alt="TesteNest" width={150} height={73} />
@@ -137,11 +177,60 @@ function Header() {
             onClick={() => {
               setCartOpen((open) => !open);
               setMenuOpen(false);
+              setUserOpen(false);
             }}
           >
             <i className="fa-solid fa-shopping-basket" />
             <span className="header__cart-badge">{badgeLabel}</span>
           </button>
+
+          {user ? (
+            <div className="header__user-wrap">
+              <button
+                type="button"
+                ref={userButtonRef}
+                className="header__user-btn"
+                aria-expanded={userOpen}
+                aria-haspopup="true"
+                onClick={() => {
+                  setUserOpen((open) => !open);
+                  setCartOpen(false);
+                }}
+              >
+                <span className="header__user-avatar">{initial}</span>
+                <span className="header__user-name">{user.name.split(' ')[0]}</span>
+              </button>
+              {userOpen && (
+                <div className="header__user-menu" ref={userPanelRef}>
+                  <p className="header__user-greet">Hi, {user.name}!</p>
+                  <p className="header__user-email">{user.email}</p>
+                  <button
+                    type="button"
+                    className="header__user-signout"
+                    onClick={() => {
+                      signOut();
+                      setUserOpen(false);
+                    }}
+                  >
+                    Sign out
+                  </button>
+                </div>
+              )}
+            </div>
+          ) : (
+            <button
+              type="button"
+              className="header__signin"
+              onClick={() => {
+                openAuth('signin');
+                setCartOpen(false);
+                setMenuOpen(false);
+              }}
+            >
+              Sign In
+            </button>
+          )}
+
           <a href="#contact" className="header__contact-btn">
             Contact Us
           </a>
@@ -154,6 +243,7 @@ function Header() {
             onClick={() => {
               setMenuOpen((open) => !open);
               setCartOpen(false);
+              setUserOpen(false);
             }}
           >
             <span className="header__hamburger-line header__hamburger-line--short" />
@@ -195,6 +285,18 @@ function Header() {
               );
             })}
           </ul>
+          {!user && (
+            <button
+              type="button"
+              className="header__mobile-signin"
+              onClick={() => {
+                openAuth('signin');
+                closeMenu();
+              }}
+            >
+              Sign In
+            </button>
+          )}
           <a href="#contact" className="header__mobile-contact" onClick={closeMenu}>
             Contact Us
           </a>

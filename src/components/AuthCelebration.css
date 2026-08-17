@@ -1,0 +1,70 @@
+.auth-celebration {
+  position: fixed;
+  inset: 0;
+  z-index: 4000;
+  pointer-events: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.auth-celebration__piece {
+  position: absolute;
+  top: 42%;
+  left: 50%;
+  width: 10px;
+  height: 10px;
+  margin: -5px 0 0 -5px;
+  background: var(--c);
+  border-radius: 2px;
+  opacity: 0;
+  animation: confetti-burst 1.8s ease-out calc(var(--i) * 0.02s) both;
+}
+
+@keyframes confetti-burst {
+  0% {
+    opacity: 1;
+    transform: translate(0, 0) rotate(0deg) scale(1);
+  }
+
+  100% {
+    opacity: 0;
+    transform: translate(var(--x), -180px) rotate(var(--r)) scale(0.4);
+  }
+}
+
+.auth-celebration__msg {
+  position: relative;
+  z-index: 1;
+  margin: 0;
+  padding: 14px 28px;
+  background: #212121;
+  border: 3px solid #ffd40d;
+  border-radius: 16px;
+  font-family: 'Fredoka One', cursive;
+  font-size: 20px;
+  color: #ffffff;
+  animation: celebrate-msg 0.5s cubic-bezier(0.22, 1.1, 0.36, 1) 0.1s both;
+}
+
+@keyframes celebrate-msg {
+  from {
+    opacity: 0;
+    transform: translateY(20px) scale(0.9);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .auth-celebration__piece {
+    display: none;
+  }
+
+  .auth-celebration__msg {
+    animation: none;
+  }
+}
