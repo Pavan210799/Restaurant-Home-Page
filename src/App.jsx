@@ -1,5 +1,8 @@
-import { useCallback, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
+import { BrowserRouter, Route, Routes, useLocation } from 'react-router-dom';
 import HomePage from './pages/HomePage';
+import ForgotPasswordPage from './pages/ForgotPasswordPage';
+import ResetPasswordPage from './pages/ResetPasswordPage';
 import { CartProvider } from './context/CartContext';
 import { AuthProvider, useAuth } from './context/AuthContext';
 import AuthModal from './components/AuthModal';
@@ -7,8 +10,9 @@ import SplashScreen from './components/SplashScreen';
 
 const INTRO_SPLASH_KEY = 'tastenest-splash-seen';
 
-function AppContent() {
-  const { splashOpen, splashMessage, splashKey, closeSplash } = useAuth();
+function MainApp() {
+  const { splashOpen, splashMessage, splashKey, closeSplash, openAuth } = useAuth();
+  const location = useLocation();
   const [introDone, setIntroDone] = useState(() => {
     try {
       return !!sessionStorage.getItem(INTRO_SPLASH_KEY);
@@ -16,6 +20,13 @@ function AppContent() {
       return true;
     }
   });
+
+  useEffect(() => {
+    const authIntent = location.state?.openAuth;
+    if (authIntent === 'signin' || authIntent === 'signup') {
+      openAuth(authIntent);
+    }
+  }, [location.state, openAuth]);
 
   const onIntroDone = useCallback(() => {
     try {
@@ -55,7 +66,13 @@ function App() {
   return (
     <AuthProvider>
       <CartProvider>
-        <AppContent />
+        <BrowserRouter>
+          <Routes>
+            <Route path="/" element={<MainApp />} />
+            <Route path="/forgot-password" element={<ForgotPasswordPage />} />
+            <Route path="/reset-password" element={<ResetPasswordPage />} />
+          </Routes>
+        </BrowserRouter>
       </CartProvider>
     </AuthProvider>
   );

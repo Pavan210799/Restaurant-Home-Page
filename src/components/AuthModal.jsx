@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 import './AuthModal.css';
 
@@ -177,6 +178,14 @@ function AuthModal() {
                 aria-invalid={status === 'error'}
               />
             </label>
+
+            {authMode === 'signin' && (
+              <p className="auth-modal__forgot">
+                <Link to="/forgot-password" onClick={closeAuth}>
+                  Forgot password?
+                </Link>
+              </p>
+            )}
 
             {message && (
               <p className="auth-modal__error" role="alert">

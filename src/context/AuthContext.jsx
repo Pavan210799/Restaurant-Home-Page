@@ -10,6 +10,8 @@ import {
 const AuthContext = createContext(null);
 const USERS_KEY = 'tastenest-users';
 const SESSION_KEY = 'tastenest-session';
+const RESET_KEY = 'tastenest-reset-tokens';
+const RESET_TTL_MS = 60 * 60 * 1000;
 
 const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
@@ -21,6 +23,36 @@ function readUsers() {
   } catch {
     return [];
   }
+}
+
+function writeUsers(users) {
+  localStorage.setItem(USERS_KEY, JSON.stringify(users));
+}
+
+function readResetTokens() {
+  try {
+    const raw = localStorage.getItem(RESET_KEY);
+    const parsed = raw ? JSON.parse(raw) : [];
+    return Array.isArray(parsed) ? parsed : [];
+  } catch {
+    return [];
+  }
+}
+
+function writeResetTokens(tokens) {
+  localStorage.setItem(RESET_KEY, JSON.stringify(tokens));
+}
+
+function pruneResetTokens(tokens) {
+  const now = Date.now();
+  return tokens.filter((entry) => entry.expiresAt > now);
+}
+
+function createResetToken() {
+  if (typeof crypto !== 'undefined' && crypto.randomUUID) {
+    return crypto.randomUUID();
+  }
+  return `${Date.now().toString(36)}-${Math.random().toString(36).slice(2, 12)}`;
 }
 
 function readSession() {
@@ -92,7 +124,7 @@ export function AuthProvider({ children }) {
     }
 
     users.push({ name: trimmedName, email: trimmedEmail, password });
-    localStorage.setItem(USERS_KEY, JSON.stringify(users));
+    writeUsers(users);
     setUser({ name: trimmedName, email: trimmedEmail });
     setAuthOpen(false);
     showWelcomeSplash(trimmedName);
@@ -123,6 +155,101 @@ export function AuthProvider({ children }) {
 
   const signOut = useCallback(() => setUser(null), []);
 
+  const requestPasswordReset = useCallback((email) => {
+    const trimmedEmail = email.trim().toLowerCase();
+
+    if (!trimmedEmail || !EMAIL_PATTERN.test(trimmedEmail)) {
+      return { ok: false, message: 'Please enter a valid email address.' };
+    }
+
+    const users = readUsers();
+    const account = users.find((entry) => entry.email === trimmedEmail);
+
+    if (!account) {
+      return {
+        ok: true,
+        message:
+          'If an account exists for that email, reset instructions have been prepared.',
+      };
+    }
+
+    const token = createResetToken();
+    const expiresAt = Date.now() + RESET_TTL_MS;
+    const activeTokens = pruneResetTokens(readResetTokens()).filter(
+      (entry) => entry.email !== trimmedEmail,
+    );
+
+    activeTokens.push({ email: trimmedEmail, token, expiresAt });
+    writeResetTokens(activeTokens);
+
+    const resetPath = `/reset-password?token=${encodeURIComponent(token)}`;
+    const resetLink =
+      typeof window !== 'undefined'
+        ? `${window.location.origin}${resetPath}`
+        : resetPath;
+
+    return {
+      ok: true,
+      message: 'Your reset link is ready. Use it within the next hour.',
+      resetLink,
+    };
+  }, []);
+
+  const validateResetToken = useCallback((token) => {
+    if (!token) {
+      return { valid: false, message: 'No reset token was provided.' };
+    }
+
+    const match = pruneResetTokens(readResetTokens()).find(
+      (entry) => entry.token === token,
+    );
+
+    if (!match) {
+      return {
+        valid: false,
+        message: 'This reset link is invalid or has expired.',
+      };
+    }
+
+    return { valid: true, email: match.email };
+  }, []);
+
+  const resetPassword = useCallback(({ token, password, confirmPassword }) => {
+    const tokenStatus = validateResetToken(token);
+
+    if (!tokenStatus.valid) {
+      return { ok: false, message: tokenStatus.message };
+    }
+
+    if (!password || password.length < 6) {
+      return { ok: false, message: 'Password must be at least 6 characters.' };
+    }
+
+    if (password !== confirmPassword) {
+      return { ok: false, message: 'Passwords do not match.' };
+    }
+
+    const users = readUsers();
+    const index = users.findIndex((entry) => entry.email === tokenStatus.email);
+
+    if (index === -1) {
+      return { ok: false, message: 'Account not found. Please sign up again.' };
+    }
+
+    users[index] = { ...users[index], password };
+    writeUsers(users);
+
+    const remaining = pruneResetTokens(readResetTokens()).filter(
+      (entry) => entry.token !== token,
+    );
+    writeResetTokens(remaining);
+
+    return {
+      ok: true,
+      message: 'Password updated! Redirecting you to sign in…',
+    };
+  }, [validateResetToken]);
+
   const value = useMemo(
     () => ({
       user,
@@ -138,6 +265,9 @@ export function AuthProvider({ children }) {
       signUp,
       signIn,
       signOut,
+      requestPasswordReset,
+      validateResetToken,
+      resetPassword,
     }),
     [
       user,
@@ -152,6 +282,9 @@ export function AuthProvider({ children }) {
       signUp,
       signIn,
       signOut,
+      requestPasswordReset,
+      validateResetToken,
+      resetPassword,
     ],
   );
 
