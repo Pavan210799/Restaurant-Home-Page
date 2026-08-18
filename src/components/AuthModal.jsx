@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
+import PasswordField from './PasswordField';
 import './AuthModal.css';
 
 function AuthModal() {
@@ -164,20 +165,16 @@ function AuthModal() {
               />
             </label>
 
-            <label className="auth-modal__field">
-              <span>Password</span>
-              <input
-                type="password"
-                name="password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                placeholder="Min. 6 characters"
-                autoComplete={
-                  authMode === 'signup' ? 'new-password' : 'current-password'
-                }
-                aria-invalid={status === 'error'}
-              />
-            </label>
+            <PasswordField
+              key={authMode}
+              label="Password"
+              name="password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              placeholder="Min. 6 characters"
+              autoComplete={authMode === 'signup' ? 'new-password' : 'current-password'}
+              invalid={status === 'error'}
+            />
 
             {authMode === 'signin' && (
               <p className="auth-modal__forgot">

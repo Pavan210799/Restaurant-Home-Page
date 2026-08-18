@@ -237,6 +237,11 @@
   animation: auth-field-in 0.45s ease both;
 }
 
+.auth-modal__form .password-field {
+  animation: auth-field-in 0.45s ease both;
+  animation-delay: 0.2s;
+}
+
 .auth-modal__field:nth-child(1) {
   animation-delay: 0.08s;
 }

@@ -1,6 +1,7 @@
 import { useMemo, useState } from 'react';
 import { Link, useNavigate, useSearchParams } from 'react-router-dom';
 import AuthPageShell from '../components/AuthPageShell';
+import PasswordField from '../components/PasswordField';
 import { useAuth } from '../context/AuthContext';
 
 function ResetPasswordPage() {
@@ -70,31 +71,25 @@ function ResetPasswordPage() {
         </p>
       ) : (
         <form className="auth-page__form" onSubmit={handleSubmit} noValidate>
-          <label className="auth-page__field">
-            <span>New password</span>
-            <input
-              type="password"
-              name="password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              placeholder="Min. 6 characters"
-              autoComplete="new-password"
-              aria-invalid={status === 'error'}
-            />
-          </label>
+          <PasswordField
+            label="New password"
+            name="password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            placeholder="Min. 6 characters"
+            autoComplete="new-password"
+            invalid={status === 'error'}
+          />
 
-          <label className="auth-page__field">
-            <span>Confirm password</span>
-            <input
-              type="password"
-              name="confirmPassword"
-              value={confirmPassword}
-              onChange={(e) => setConfirmPassword(e.target.value)}
-              placeholder="Re-enter password"
-              autoComplete="new-password"
-              aria-invalid={status === 'error'}
-            />
-          </label>
+          <PasswordField
+            label="Confirm password"
+            name="confirmPassword"
+            value={confirmPassword}
+            onChange={(e) => setConfirmPassword(e.target.value)}
+            placeholder="Re-enter password"
+            autoComplete="new-password"
+            invalid={status === 'error'}
+          />
 
           {message && (
             <p className="auth-page__message auth-page__message--error" role="alert">
